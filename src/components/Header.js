@@ -3,6 +3,7 @@ import cities from "cities"
 import iconToUrl from "../utils/iconToUrl"
 import PropTypes from 'prop-types'
 import moment from "moment-timezone"
+import unixTime from "../utils/unixTime"
 
 const Header = ({ latitude, longitude, icon, time, timezone, temperature }) => {
   let city = cities.gps_lookup(latitude, longitude)
@@ -14,7 +15,7 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature }) => {
       <div>{temperature}°F</div>
       <div>
         <div>{location}</div>
-        <div><date>{ moment.tz(time, timezone).format('h:mma z') }</date></div>
+        <div><date>{ moment.tz(unixTime(time), timezone).format('h:mma z') }</date></div>
       </div>
     </div>
   )

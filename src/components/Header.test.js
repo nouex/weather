@@ -20,7 +20,7 @@ describe('<Header />', function () {
         <div>{props.temperature}°F</div>
         <div>
           <div>Matlock, WA</div>
-          <div><date>{"1:12pm PDT"}</date></div>
+          <div><date>{"9:51am PST"}</date></div>
         </div>
       </div>
     )
