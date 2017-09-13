@@ -7,4 +7,4 @@ const actions = {
   }
 }
 
-exports default actions
+export default actions

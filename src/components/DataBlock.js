@@ -8,13 +8,15 @@ const DataBlock = (dataLen) => {
     <div>
       <_DataBlockDropdown />
       <_DataBlockHeader />
-      (() => {
+      {(() => {
           let ret = []
           for (let i = 0; i < dataLen; i++) {
             ret.push(<_DataBlockCard key={n} dataPtKey={n}/>)
           }
           return ret
-      }());
+      })()}
     </div>
   )
 }
+
+export default DataBlock

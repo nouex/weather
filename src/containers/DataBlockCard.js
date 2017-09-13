@@ -22,4 +22,4 @@ function mapStateToProps(state, { dataPtKey }) {
 
 const _DataBlockCard = connect(mapStateToProps)(DataBlockCard)
 
-exports default _DataBlockCard
+export default _DataBlockCard

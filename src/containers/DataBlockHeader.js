@@ -13,4 +13,4 @@ function mapStateToProps(state) {
 
 const _DataBlockHeader = connect(mapStateToProps)(DataBlockHeader)
 
-exports default _DataBlockHeader
+export default _DataBlockHeader

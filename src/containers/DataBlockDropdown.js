@@ -5,4 +5,4 @@ import { setDataBlockName } from "../actions"
 
 const _DataBlockDropdown = connect(null, { setDataBlockName })(DataBlockDropdown)
 
-exports default _DataBlockDropdown
+export default _DataBlockDropdown
