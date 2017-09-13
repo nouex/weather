@@ -16,4 +16,4 @@ function mapStateToProps(state) {
 
 const _Header = connect(mapStateToProps)(Header)
 
-exports default _Header
+export default _Header
