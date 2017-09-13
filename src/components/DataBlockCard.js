@@ -27,7 +27,7 @@ const DataBlockCard = ({ dataBlockName, icon, summary, temperature, sunriseTime,
 }
 
 // FIXME: props that only belong to some dataBlockNames should be optional
-// in propTypes
+// in propTypes.  Also, deal with optional data not present.
 DataBlockCard.propTypes = {
   dataBlockName: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
