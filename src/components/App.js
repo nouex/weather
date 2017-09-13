@@ -1,23 +1,14 @@
 import React from 'react';
-
-// TODO: maybe export geolocation-related fns
-function geoLocationEnabled() {
-  // ...
-}
-
-function getLatitude() {
-
-}
-
-function getLongitude() {
-
-}
+import DataPage from "./DataPage"
+import geo from "../utils/geo"
 
 const App = ({ jsonApiStatus, loadJsonApi }) => {
-  switch (jsonApiStatus) {
-    case null: // have not intended to load
-      if (geoLocationEnabled()) {
-        loadJsonApi(getLatitude(), getLongitude())
+  switch (Number(jsonApiStatus)) {
+    // NOTE: why -1 b/c the pos nums were take when i found out { null }
+    // is not passed in jsx
+    case -1: // have not intended to load
+      if (geo.enabled()) {
+        loadJsonApi()
         return null
       } else {
         return (
@@ -35,16 +26,10 @@ const App = ({ jsonApiStatus, loadJsonApi }) => {
         <h1>Failure to retrieve json data.  Try again? ¯\_(ツ)_/¯</h1>
       )
       break;
+
+    default:
+      throw new TypeError("unknown `jsonApiStatus`")
   }
 }
 
 export default App
-
-//
-// State
-// -----
-// jsonApiStatus: null | success | failure
-// dataBlock: "hourly"
-// data: {
-//
-// }
