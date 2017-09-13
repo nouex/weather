@@ -15,17 +15,6 @@ describe('geo', function () {
     }
 
     beforeAll(function () {
-      // NOTE: avoid 'ReferenceError: navigator is not defined'
-      try {
-        const navigator = navigator || {}
-      } catch (e) {}
-
-      navigator.geolocation ?
-        fail("navigator.geolocation already present")
-        : void(0)
-
-      navigator.geolocation = geolocation
-
       geolocation.use()
     })
 
