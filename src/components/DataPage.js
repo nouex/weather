@@ -3,8 +3,10 @@ import _Header from "../containers/Header"
 import _DataBlock from "../containers/DataBlock"
 
 const DataPage = () => (
-  <_Header />
-  <_DataBlock />
+  <div>
+    <_Header />
+    <_DataBlock />
+  </div>
 )
 
 export default DataPage
