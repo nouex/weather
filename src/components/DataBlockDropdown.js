@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types"
 
 class DataBlockDropdown extends React.Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class DataBlockDropdown extends React.Component {
   }
 
   handlechange(event) {
-
-    // this.props.actionThatUpdatesDataBlock(event.target.value)
+    this.state.value = event.target.value;
+    this.props.setDataBlockName(event.target.value)
   }
 
   render() {
@@ -23,6 +24,10 @@ class DataBlockDropdown extends React.Component {
       </select>
     )
   }
+}
+
+DataBlockDropdown.propTypes = {
+  setDataBlockName: PropTypes.func.isRequired
 }
 
 export default DataBlockDropdown
