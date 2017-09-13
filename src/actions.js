@@ -6,7 +6,7 @@ function setJsonApiStatus(statusN, dataJson) {
   switch (statusN) {
     case 0:
       return {
-        actionType,
+        type: actionType,
         statusN,
         data: dataJson
       }
@@ -14,7 +14,7 @@ function setJsonApiStatus(statusN, dataJson) {
 
     case 1:
       return {
-        actionType,
+        type: actionType,
         statusN
       }
 
