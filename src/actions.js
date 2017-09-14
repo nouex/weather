@@ -1,7 +1,7 @@
 import geo from "./utils/geo"
 import xhr from "xhr"
 
-function setJsonApiStatus(statusN, dataJson) {
+function setJsonApiStatus(statusN, dataJson, msg) {
   const actionType = "SET_JSON_API_STATUS"
   switch (statusN) {
     case 0:
@@ -13,6 +13,10 @@ function setJsonApiStatus(statusN, dataJson) {
       break;
 
     case 1:
+      // NOTE: idrk what to do with the msg, ideally once the app advances we
+      //  should notify the user about the error, they might be able to adjust
+      //  for a fix (e.g. enabling geolocation api )
+      msg ? console.log("Error passed to setJsonApiStatus(1)", msg) : void 0
       return {
         type: actionType,
         statusN
@@ -40,12 +44,13 @@ function loadJsonApi(_xhr) {
           json: true,
           xhr: _xhr
       }, function (err, resp, body) {
-          if (err) dispatch(setJsonApiStatus(1))
-          if (+resp.statusCode !== 200) dispatch(setJsonApiStatus(1))
+          if (err) dispatch(setJsonApiStatus(1, null, err.message))
+          if (+resp.statusCode !== 200)
+            dispatch(setJsonApiStatus(1, null, "non 200 OK status code"))
           else dispatch(setJsonApiStatus(0, body))
       })
     }, function (err) {
-      dispatch(setJsonApiStatus(1))
+      dispatch(setJsonApiStatus(1, null, err.message))
     })
   }
 }
