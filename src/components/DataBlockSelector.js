@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types"
 
-class DataBlockDropdown extends React.Component {
+class DataBlockSelector extends React.Component {
   constructor(props) {
     super(props)
     this.onChange = this.handlechange.bind(this)
@@ -26,8 +26,8 @@ class DataBlockDropdown extends React.Component {
   }
 }
 
-DataBlockDropdown.propTypes = {
+DataBlockSelector.propTypes = {
   setDataBlockName: PropTypes.func.isRequired
 }
 
-export default DataBlockDropdown
+export default DataBlockSelector

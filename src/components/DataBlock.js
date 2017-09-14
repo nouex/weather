@@ -1,12 +1,10 @@
 import React from 'react';
 import _DataBlockHeader from "../containers/DataBlockHeader"
-import _DataBlockDropdown from "../containers/DataBlockDropdown"
 import _DataBlockCard from "../containers/DataBlockCard"
 
 const DataBlock = ({ dataLen }) => {
   return (
     <div className="p-3">
-      <_DataBlockDropdown />
       <_DataBlockHeader />
       {(() => {
           let ret = []

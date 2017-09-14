@@ -1,11 +1,11 @@
 import React from "react"
 import { shallow, mount  } from 'enzyme';
-import DataBlockDropdown from "./DataBlockDropdown"
+import DataBlockSelector from "./DataBlockSelector"
 
-describe('<DataBlockDropdown />', function () {
+describe('<DataBlockSelector />', function () {
   it('renders correctly', function () {
     const wrapper = shallow(
-      <DataBlockDropdown setDataBlockName={() => {}}/>
+      <DataBlockSelector setDataBlockName={() => {}}/>
     )
 
     expect(wrapper.getNode()).toEqual(
@@ -20,7 +20,7 @@ describe('<DataBlockDropdown />', function () {
   it("fires setDataBlockName action on onChange", function () {
       const spy = jasmine.createSpy("setDataBlockName")
       const wrapper = mount(
-        <DataBlockDropdown setDataBlockName={spy}/>
+        <DataBlockSelector setDataBlockName={spy}/>
       )
 
       expect(wrapper.state("value")).toEqual("hourly")

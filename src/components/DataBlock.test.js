@@ -2,7 +2,6 @@ import React from "react"
 import { shallow } from 'enzyme';
 import DataBlock from "./DataBlock"
 import _DataBlockHeader from "../containers/DataBlockHeader"
-import _DataBlockDropdown from "../containers/DataBlockDropdown"
 import _DataBlockCard from "../containers/DataBlockCard"
 
 describe('<DataBlock />', function () {
@@ -17,7 +16,6 @@ describe('<DataBlock />', function () {
 
     expect(wrapper.getNode()).toEqual(
       <div className="p-3">
-        <_DataBlockDropdown />
         <_DataBlockHeader />
         { dataBlockCards }
       </div>
