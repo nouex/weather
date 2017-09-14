@@ -8,7 +8,7 @@ import unixTime from "../utils/unixTime"
 const Header = ({ latitude, longitude, icon, time, timezone, temperature }) => {
   let city = cities.gps_lookup(latitude, longitude)
   let location = `${city.city}, ${city.state_abbr}`
-  
+
   return (
     <div>
       <img src={iconToUrl(icon)} />
@@ -22,8 +22,8 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature }) => {
 }
 
 Header.propTypes = {
-  latitude: PropTypes.string.isRequired,
-  longitude: PropTypes.string.isRequired,
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
   icon: PropTypes.string.isRequired,
   time:  PropTypes.number.isRequired,
   timezone: PropTypes.string.isRequired,
