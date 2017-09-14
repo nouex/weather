@@ -10,7 +10,8 @@ function mapStateToProps(state) {
     icon: data.currently.icon,
     time: data.currently.time,
     timezone: data.timezone,
-    temperature: data.currently.temperature
+    temperature: data.currently.temperature,
+    summary: data.currently.summary
   }
 }
 

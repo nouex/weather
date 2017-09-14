@@ -14,7 +14,7 @@ import {
   CardHeader,
 } from 'react-bootstrap-card';
 
-const DataBlockCard = ({ dataBlockName, icon, summary, temperature, sunriseTime,
+const DataBlockCard = ({ dataBlockName, icon, temperature, sunriseTime,
                          sunsetTime, cloudCover, humidity, dewPoint, timezone,
                          time
                        }) => {
@@ -38,7 +38,6 @@ const DataBlockCard = ({ dataBlockName, icon, summary, temperature, sunriseTime,
               { formattedTime }
             </CardHeader>
               <img class="card-img-top" src={ iconToUrl(icon) } />
-              <p>{ summary }</p>
               <ul>
                 { dataBlockName === "minutely" ? null : <li> Temperature: { temperature }°F</li> }
                 { dataBlockName === "daily" ? <li> Sunrise&#58;{ moment.tz(unixTime(sunriseTime), timezone).format('h:mma z') }</li> : null }
@@ -57,7 +56,6 @@ const DataBlockCard = ({ dataBlockName, icon, summary, temperature, sunriseTime,
 DataBlockCard.propTypes = {
   dataBlockName: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
   temperature: PropTypes.number.isRequired,
   sunriseTime: PropTypes.number.isRequired,
   sunsetTime: PropTypes.number.isRequired,

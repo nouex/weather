@@ -3,11 +3,11 @@ import React from "react"
 import DataBlockHeader from "../components/DataBlockHeader"
 
 function mapStateToProps(state) {
-  const curr = state.data.currently
+  const dataBlk = state.data[state.dataBlockName]
 
   return {
-    icon: curr.icon,
-    summary: curr.summary
+    icon: dataBlk.icon,
+    summary: dataBlk.summary
   }
 }
 

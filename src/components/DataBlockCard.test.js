@@ -12,7 +12,6 @@ describe('<DataBlockCard />', function () {
     const props = {
       dataBlockName: "hourly",
       icon: "cloudy",
-      summary: "Cloudy with a change of meatballs",
       temperature: 48.71,
       sunriseTime: 1453391560,
       sunsetTime: 1453424361,
@@ -32,7 +31,6 @@ describe('<DataBlockCard />', function () {
             Thursday 12pm
           </CardHeader>
             <img class="card-img-top" src={ `./icons/${props.icon}.png` } />
-            <p>{ props.summary }</p>
             <ul>
               { props.dataBlockName === "minutely" ? null : <li> Temperature: { props.temperature }°F</li> }
               { null }
@@ -50,7 +48,6 @@ describe('<DataBlockCard />', function () {
     const props = {
       dataBlockName: "minutely",
       icon: "cloudy",
-      summary: "Cloudy with a change of meatballs",
       temperature: 48.71,
       sunriseTime: 1453391560,
       sunsetTime: 1453424361,
@@ -70,7 +67,6 @@ describe('<DataBlockCard />', function () {
             12:04pm
           </CardHeader>
             <img class="card-img-top" src={ `./icons/${props.icon}.png` } />
-            <p>{ props.summary }</p>
             <ul>
               { null }
               { null }
@@ -88,7 +84,6 @@ describe('<DataBlockCard />', function () {
     const props = {
       dataBlockName: "daily",
       icon: "cloudy",
-      summary: "Cloudy with a change of meatballs",
       temperature: 48.71,
       sunriseTime: 1453391560,
       sunsetTime: 1453424361,
@@ -108,7 +103,6 @@ describe('<DataBlockCard />', function () {
             Thursday 14th
           </CardHeader>
             <img class="card-img-top" src={ `./icons/${props.icon}.png` } />
-            <p>{ props.summary }</p>
             <ul>
               <li> Temperature: { props.temperature }°F</li>
               <li> Sunrise:{ "7:52am PST" }</li>

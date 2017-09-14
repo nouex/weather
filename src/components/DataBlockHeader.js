@@ -4,6 +4,7 @@ import iconToUrl from "../utils/iconToUrl"
 
 const DataBlockHeader = ({icon, summary}) => (
   <div>
+      { /* TODO: same as <Header /> mk these adjacen */ }
       <img src={iconToUrl(icon)} />
       <p>{summary}</p>
   </div>

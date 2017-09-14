@@ -9,7 +9,6 @@ function mapStateToProps(state, { dataPtKey }) {
   return {
     dataBlockName: state.dataBlockName,
     icon: dataBlk.icon,
-    summary: dataBlk.summary,
     temperature: dataPt.temperature,
     sunriseTime: dataPt.sunriseTime,
     sunsetTime: dataPt.sunsetTime,

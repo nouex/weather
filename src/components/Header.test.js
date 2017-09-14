@@ -10,7 +10,8 @@ describe('<Header />', function () {
       icon: "rain",
       time: 1505247126663,
       timezone: "America/Los_Angeles",
-      temperature: 48.71
+      temperature: 48.71,
+      summary: "rain and water"
     }
     const wrapper = shallow(<Header {...props}/>)
 
@@ -25,6 +26,7 @@ describe('<Header />', function () {
         }}
         className="m-3">Matlock, WA</div>
         <img src="./icons/rain.png"  />
+        <div>{ props.summary }</div>
         <div>{ props.temperature }°F</div>
         <div><date>{ "9:51am PST" }</date></div>
       </header>    )
