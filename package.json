@@ -18,6 +18,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-all": "./node_modules/concurrently/src/main.js \"npm run-script start-server\" \"npm run-script start\"",
+    "start-server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
