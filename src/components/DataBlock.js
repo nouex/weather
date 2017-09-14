@@ -5,7 +5,7 @@ import _DataBlockCard from "../containers/DataBlockCard"
 
 const DataBlock = ({ dataLen }) => {
   return (
-    <div>
+    <div className="p-3">
       <_DataBlockDropdown />
       <_DataBlockHeader />
       {(() => {

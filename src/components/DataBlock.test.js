@@ -16,7 +16,7 @@ describe('<DataBlock />', function () {
     }
 
     expect(wrapper.getNode()).toEqual(
-      <div>
+      <div className="p-3">
         <_DataBlockDropdown />
         <_DataBlockHeader />
         { dataBlockCards }
