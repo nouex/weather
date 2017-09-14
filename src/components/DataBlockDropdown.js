@@ -11,7 +11,7 @@ class DataBlockDropdown extends React.Component {
   }
 
   handlechange(event) {
-    this.state.value = event.target.value;
+    this.setState({value: event.target.value})
     this.props.setDataBlockName(event.target.value)
   }
 
