@@ -10,14 +10,19 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature }) => {
   let location = `${city.city}, ${city.state_abbr}`
 
   return (
-    <div>
+    <header className="fixed-top text-center bg-light align-middle p-3">
+      <div style={{
+        position: "absolute",
+        marginRight: 0,
+        marginLeft: "auto",
+        left: "auto",
+        right: 0
+      }}
+      className="m-3">{location}</div>
       <img src={iconToUrl(icon)} />
       <div>{temperature}°F</div>
-      <div>
-        <div>{location}</div>
-        <div><date>{ moment.tz(unixTime(time), timezone).format('h:mma z') }</date></div>
-      </div>
-    </div>
+      <div><date>{ moment.tz(unixTime(time), timezone).format('h:mma z') }</date></div>
+    </header>
   )
 }
 
