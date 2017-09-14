@@ -9,7 +9,6 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature,
                   summary }) => {
   let city = cities.gps_lookup(latitude, longitude)
   let location = `${city.city}, ${city.state_abbr}`
-
   return (
     <header className="sticky-top text-center bg-light align-middle p-3">
       <div style={{
@@ -21,7 +20,7 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature,
       }}
       className="m-3">{location}</div>
       { /* TODO: make img and summary adjacent */ }
-      <img src={iconToUrl(icon)} />
+      <img src="transparent.png" className={ `icon-${icon}` }/>
       <div>{ summary }</div>
       <div>{temperature}°F</div>
       <div><date>{ moment.tz(unixTime(time), timezone).format('h:mma z') }</date></div>

@@ -1,0 +1,51 @@
+.icon-clear-day {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") 0px -232px;  }
+
+      .icon-clear-night {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -464px -464px;  }
+
+      .icon-rain {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -464px -348px;  }
+
+      .icon-snow {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -348px 0px;  }
+
+      .icon-sleet {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -464px -116px;  }
+
+      .icon-wind {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -232px -232px;  }
+
+      .icon-fog {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -116px -348px;  }
+
+      .icon-cloudy {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -348px -232px;  }
+
+      .icon-partly-cloudy-day {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -116px -232px;  }
+
+      .icon-partly-cloudy-night {
+      width: 116px;
+      height: 116px;
+      background: url("../imgs/weather_icons.png") -116px -580px;  }
+
+      

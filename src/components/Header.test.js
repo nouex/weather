@@ -25,7 +25,7 @@ describe('<Header />', function () {
           right: 0
         }}
         className="m-3">Matlock, WA</div>
-        <img src="./icons/rain.png"  />
+        <img src="transparent.png" className={ `icon-${props.icon}` }/>
         <div>{ props.summary }</div>
         <div>{ props.temperature }°F</div>
         <div><date>{ "9:51am PST" }</date></div>

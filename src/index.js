@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import "./css/icons.css"
 import React from 'react';
 import ReactDOM from 'react-dom';
 import _App from './containers/App';
