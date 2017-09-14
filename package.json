@@ -25,6 +25,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "concurrently": "^3.5.0",
     "enzyme": "^2.9.1",
     "mock-geolocation": "^1.0.11",
     "react-test-renderer": "^15.6.1",
