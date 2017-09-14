@@ -10,3 +10,8 @@ In order of time it will need to complete (guestimation).
 * live clock in <Header /> with a "last updated: 7 mins ago" below it and button to refresh
 * pagination to limit N elements per scroll (like insta) until we get to the end (limit) of available data
 * inline TODOs
+
+1. move dropdown (rename -> DataBlockSelector) and summary
+2. pagination (use inspector to make sure the previous (keys) arent rerendered)
+3. live clock
+4. work on prettifyend and simplyfing content in cards
