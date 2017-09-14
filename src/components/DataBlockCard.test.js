@@ -19,7 +19,8 @@ describe('<DataBlockCard />', function () {
       cloudCover: 0.77,
       humidity: 0.74,
       dewPoint: 26.15,
-      timezone: "America/Los_Angeles"
+      timezone: "America/Los_Angeles",
+      time: 1505408667517 / 1000 // UNIX time in secs no ms
     }
 
     const wrapper = shallow(<DataBlockCard {...props}/>)
@@ -28,7 +29,7 @@ describe('<DataBlockCard />', function () {
       <Card className="mb-5 d-block mx-auto w-75">
         <CardBlock>
           <CardHeader>
-            Time specific to datablockName goes here
+            Thursday 12pm
           </CardHeader>
             <img class="card-img-top" src={ `./icons/${props.icon}.png` } />
             <p>{ props.summary }</p>
@@ -56,7 +57,8 @@ describe('<DataBlockCard />', function () {
       cloudCover: 0.77,
       humidity: 0.74,
       dewPoint: 26.15,
-      timezone: "America/Los_Angeles"
+      timezone: "America/Los_Angeles",
+      time: 1505408667517 / 1000 // UNIX time in secs no ms
     }
 
     const wrapper = shallow(<DataBlockCard {...props}/>)
@@ -65,7 +67,7 @@ describe('<DataBlockCard />', function () {
       <Card className="mb-5 d-block mx-auto w-75">
         <CardBlock>
           <CardHeader>
-            Time specific to datablockName goes here
+            12:04pm
           </CardHeader>
             <img class="card-img-top" src={ `./icons/${props.icon}.png` } />
             <p>{ props.summary }</p>
@@ -93,7 +95,8 @@ describe('<DataBlockCard />', function () {
       cloudCover: 0.77,
       humidity: 0.74,
       dewPoint: 26.15,
-      timezone: "America/Los_Angeles"
+      timezone: "America/Los_Angeles",
+      time: 1505408667517 / 1000 // UNIX time in secs no ms
     }
 
     const wrapper = shallow(<DataBlockCard {...props}/>)
@@ -102,7 +105,7 @@ describe('<DataBlockCard />', function () {
       <Card className="mb-5 d-block mx-auto w-75">
         <CardBlock>
           <CardHeader>
-            Time specific to datablockName goes here
+            Thursday 14th
           </CardHeader>
             <img class="card-img-top" src={ `./icons/${props.icon}.png` } />
             <p>{ props.summary }</p>

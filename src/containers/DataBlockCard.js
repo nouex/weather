@@ -16,7 +16,8 @@ function mapStateToProps(state, { dataPtKey }) {
     cloudCover: dataPt.cloudCover,
     humidity: dataPt.humidity,
     dewPoint: dataPt.dewPoint,
-    timezone: state.data.timezone
+    timezone: state.data.timezone,
+    time: dataPt.time
   }
 }
 

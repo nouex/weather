@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * DataBlockCard is analoguous to a "Data Point" in Dark Sky terminology
+ */
 
 import React from "react"
 import PropTypes from "prop-types"
@@ -12,14 +15,27 @@ import {
 } from 'react-bootstrap-card';
 
 const DataBlockCard = ({ dataBlockName, icon, summary, temperature, sunriseTime,
-                         sunsetTime, cloudCover, humidity, dewPoint, timezone
+                         sunsetTime, cloudCover, humidity, dewPoint, timezone,
+                         time
                        }) => {
+
+      // NOTE: `time` is "according to the local time zone"
+      let formattedTime, format, dataPtTimeFormats
+
+      dataPtTimeFormats = {
+        "minutely": "h:mma",
+        "hourly": "dddd ha",
+        "daily": "dddd Do"
+      }
+      format = dataPtTimeFormats[dataBlockName]
+      formattedTime = moment(unixTime(time)).format(format)
+      console.log(time, formattedTime, dataBlockName, format)
 
       return (
         <Card className="mb-5 d-block mx-auto w-75">
           <CardBlock>
             <CardHeader>
-              Time specific to datablockName goes here
+              { formattedTime }
             </CardHeader>
               <img class="card-img-top" src={ iconToUrl(icon) } />
               <p>{ summary }</p>
@@ -48,7 +64,8 @@ DataBlockCard.propTypes = {
   cloudCover: PropTypes.number.isRequired,
   humidity: PropTypes.number.isRequired,
   dewPoint: PropTypes.number.isRequired,
-  timezone: PropTypes.string.isRequired
+  timezone: PropTypes.string.isRequired,
+  time: PropTypes.number.isRequired
 }
 
 export default DataBlockCard
