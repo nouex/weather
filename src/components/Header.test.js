@@ -15,7 +15,7 @@ describe('<Header />', function () {
     const wrapper = shallow(<Header {...props}/>)
 
     expect(wrapper.getNode()).toEqual(
-      <header className="fixed-top text-center bg-light align-middle p-3">
+      <header className="sticky-top text-center bg-light align-middle p-3">
         <div style={{
           position: "absolute",
           marginRight: 0,

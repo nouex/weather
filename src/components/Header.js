@@ -10,7 +10,7 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature }) => {
   let location = `${city.city}, ${city.state_abbr}`
 
   return (
-    <header className="fixed-top text-center bg-light align-middle p-3">
+    <header className="sticky-top text-center bg-light align-middle p-3">
       <div style={{
         position: "absolute",
         marginRight: 0,
