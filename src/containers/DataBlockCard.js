@@ -6,18 +6,15 @@ function mapStateToProps(state, { dataPtKey }) {
   const dataBlk = state.data[state.dataBlockName],
         dataPt = dataBlk.data[dataPtKey]
 
-  return {
-    dataBlockName: state.dataBlockName,
-    icon: dataBlk.icon,
-    temperature: dataPt.temperature,
-    sunriseTime: dataPt.sunriseTime,
-    sunsetTime: dataPt.sunsetTime,
-    cloudCover: dataPt.cloudCover,
-    humidity: dataPt.humidity,
-    dewPoint: dataPt.dewPoint,
-    timezone: state.data.timezone,
-    time: dataPt.time
-  }
+  return Object.assign(
+    {},
+    dataPt,
+    {
+      dataBlockName: state.dataBlockName,
+      icon: dataBlk.icon,
+      timezone: state.data.timezone
+    }
+  )
 }
 
 const _DataBlockCard = connect(mapStateToProps)(DataBlockCard)
