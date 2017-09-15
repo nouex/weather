@@ -1,6 +1,9 @@
 import { connect } from "react-redux"
 import React from "react"
 import Header from "../components/Header"
+import actions from "../actions"
+
+const upLocalTime = actions.upLocalTime
 
 function mapStateToProps(state) {
   const data = state.data
@@ -11,10 +14,15 @@ function mapStateToProps(state) {
     time: data.currently.time,
     timezone: data.timezone,
     temperature: data.currently.temperature,
-    summary: data.currently.summary
+    summary: data.currently.summary,
+    localTime: state.localTime
   }
 }
 
-const _Header = connect(mapStateToProps)(Header)
+const mapDispatchToProps = {
+  upLocalTime
+}
+
+const _Header = connect(mapStateToProps, mapDispatchToProps)(Header)
 
 export default _Header

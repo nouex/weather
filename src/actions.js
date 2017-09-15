@@ -61,11 +61,19 @@ function upPage() {
   }
 }
 
+function upLocalTime() {
+  return (dispatch, gS) => {
+    setTimeout(upLocalTime().bind(null, dispatch, gS), 20000)
+    dispatch({type: "UP_LOCAL_TIME"})
+  }
+}
+
 const actions = {
   setDataBlockName,
   loadJsonApi,
   setJsonApiStatus,
-  upPage
+  upPage,
+  upLocalTime
 }
 
 export default actions

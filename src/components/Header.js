@@ -6,9 +6,15 @@ import moment from "moment-timezone"
 import unixTime from "../utils/unixTime"
 
 const Header = ({ latitude, longitude, icon, time, timezone, temperature,
-                  summary }) => {
+                  summary, localTime, upLocalTime }) => {
   let city = cities.gps_lookup(latitude, longitude)
   let location = `${city.city}, ${city.state_abbr}`
+
+  if (localTime === null) {
+    upLocalTime()
+    localTime = time
+  }
+
   return (
     <header className="sticky-top text-center bg-light align-middle p-3">
       <div style={{
@@ -23,7 +29,8 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature,
       <img src="transparent.png" className={ `icon-${icon}` }/>
       <div>{ summary }</div>
       <div>{temperature}°F</div>
-      <div><date>{ moment.tz(unixTime(time), timezone).format('h:mma z') }</date></div>
+      <div><date>{ moment.tz(unixTime(localTime), timezone).format('h:mma z') }</date></div>
+      <div className="text-secondary" style={{ fontSize: "0.8em" }}>Last updated { moment.tz(unixTime(time), timezone).fromNow() }</div>
     </header>
   )
 }
@@ -35,7 +42,8 @@ Header.propTypes = {
   time:  PropTypes.number.isRequired,
   timezone: PropTypes.string.isRequired,
   temperature: PropTypes.number.isRequired,
-  summary: PropTypes.string.isRequired
+  summary: PropTypes.string.isRequired,
+  upLocalTime: PropTypes.func.isRequired
 }
 
 export default Header
