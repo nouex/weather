@@ -1,7 +1,6 @@
 import { connect } from "react-redux"
-// TODO: rm all React imports in containers
 import React from "react"
-import DataBlock from "../components/DataBlock"
+import DataPage from "../components/DataPage"
 
 function mapStateToProps(state) {
   return {
@@ -11,6 +10,6 @@ function mapStateToProps(state) {
   }
 }
 
-const _DataBlock = connect(mapStateToProps)(DataBlock)
+const _DataPage = connect(mapStateToProps)(DataPage)
 
-export default _DataBlock
+export default _DataPage

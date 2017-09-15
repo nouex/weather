@@ -55,10 +55,17 @@ function loadJsonApi(_xhr) {
   }
 }
 
+function upPage() {
+  return {
+    type: "UP_PAGE"
+  }
+}
+
 const actions = {
   setDataBlockName,
   loadJsonApi,
-  setJsonApiStatus
+  setJsonApiStatus,
+  upPage
 }
 
 export default actions

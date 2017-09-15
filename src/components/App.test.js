@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from 'enzyme';
 import App from "./App"
-import DataPage from "./DataPage"
+import _DataPage from "../containers/DataPage"
 import geolocation from "mock-geolocation"
 
 describe('<App />', function () {
@@ -16,13 +16,14 @@ describe('<App />', function () {
     expect(loadJsonApi).not.toHaveBeenCalled()
   })
 
-  it("renders <DataPage /> when jsonApiStatus === 0", function () {
+  it("renders <_DataPage /> when jsonApiStatus === 0", function () {
     const loadJsonApi = jasmine.createSpy("loadJsonApi")
+
     expect(
       shallow(
         <App jsonApiStatus="0" loadJsonApi={loadJsonApi}/>).getNode() )
       .toEqual(
-        <DataPage />
+        <_DataPage />
       )
     expect(loadJsonApi).not.toHaveBeenCalled()
   })

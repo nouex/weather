@@ -1,5 +1,5 @@
 import React from 'react';
-import DataPage from "./DataPage"
+import _DataPage from "../containers/DataPage"
 import geo from "../utils/geo"
 
 const App = ({ jsonApiStatus, loadJsonApi }) => {
@@ -18,7 +18,7 @@ const App = ({ jsonApiStatus, loadJsonApi }) => {
       break;
 
     case 0: // successfully loaded
-      return <DataPage />
+      return <_DataPage />
       break;
 
     case 1: // failure loading
