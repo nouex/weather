@@ -8,6 +8,8 @@ In order of time it will need to complete (guestimation).
 * ~~move summary and dropdown out of DataBlock, summary should only display once
   , dropdow is not per DataBlock, move current.summary from datablock to header~~
 * rename state.localTime -> state.freshTime
+* mak header slightly smaller in height
+* improve More button
 * inline TODOs
 * option to select °C or °F
 * ~~live clock in <Header /> with a "last updated: 7 mins ago" below it and button to refresh~~
