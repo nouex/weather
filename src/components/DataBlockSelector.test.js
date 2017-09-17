@@ -9,7 +9,7 @@ describe('<DataBlockSelector />', function () {
     )
 
     expect(wrapper.getNode()).toEqual(
-      <select value="hourly" onChange={jasmine.any(Function)}>
+      <select className="m-3" value="hourly" onChange={jasmine.any(Function)}>
         <option value="minutely">Minutely</option>
         <option value="hourly">Hourly</option>
         <option value="daily">Daily</option>

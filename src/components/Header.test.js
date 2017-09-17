@@ -17,28 +17,29 @@ describe('<Header />', function () {
       timezone: "America/Los_Angeles",
       temperature: 48.71,
       summary: "rain and water",
-      upLocalTime: () => { }
+      upLocalTime: () => { },
+      localTime: null
     }
     const wrapper = shallow(<Header {...props}/>)
 
     // NOTE: a real test would mock moment.fromNow() or the system time to
     //  be consistent or Date if that's where moment get's it's time from
-    expect(wrapper.matchesElement(
+    expect(wrapper.getNode()).toEqual(
       <header className="sticky-top text-center bg-light align-middle p-3">
-        <div style={{
-          position: "absolute",
-          marginRight: 0,
-          marginLeft: "auto",
-          left: "auto",
-          right: 0
-        }}
-        className="m-3">Matlock, WA</div>
-        <img src="transparent.png" className={ `icon-${props.icon}` }/>
-        <div>{ props.summary }</div>
-        <div>{ props.temperature }°F</div>
-        <div><date>{ "9:51am PST" }</date></div>
-        <div className="text-secondary" style={{ fontSize: "0.8em" }}>Last updated ??? </div>
-      </header>
-    )).toBeTruthy()
+          <div style={{
+            position: "absolute",
+            marginRight: 0,
+            marginLeft: "auto",
+            left: "auto",
+            right: 0
+          }}
+          className="m-3">Matlock, WA</div>
+          <img src="transparent.png" className={ `icon-${props.icon}` }/>
+          <div>{ props.summary }</div>
+          <div>{ props.temperature }°F</div>
+          <div><date>{ "1:12pm PDT" }</date></div>
+          <div className="text-secondary" style={{ fontSize: "0.8em" }}>Last updated {jasmine.any(String)}</div>
+        </header>
+    )
   })
 });

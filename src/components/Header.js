@@ -43,7 +43,8 @@ Header.propTypes = {
   timezone: PropTypes.string.isRequired,
   temperature: PropTypes.number.isRequired,
   summary: PropTypes.string.isRequired,
-  upLocalTime: PropTypes.func.isRequired
+  upLocalTime: PropTypes.func.isRequired,
+  localTime: PropTypes.number
 }
 
 export default Header
