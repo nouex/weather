@@ -2,7 +2,12 @@
  * HTTPS Proxy Server
  */
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT,
+      DARK_SKY_KEY = process.env.DARK_SKY_KEY,
+      assert = require('assert');
+
+assert.notStrictEqual(DARK_SKY_KEY, undefined)
+assert.notStrictEqual(PORT, undefined)
 
 // TODO morgan
 const app = require("express")(),
@@ -11,8 +16,8 @@ const app = require("express")(),
       https = require("https"),
       fs = require("fs")
 
-const secretKey =
-  fs.readFileSync("./dark_sky_key.txt", { encoding: "utf8"}).trim()
+const secretKey = process.env.DARK_SKY_KEY.trim()
+assert.strictEqual(secretKey.length, 32)
 
 app.use(morgan("tiny"))
 app.use(serveStatic('build', {'index': ['index.html', 'index.htm']}))
