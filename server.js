@@ -2,6 +2,8 @@
  * HTTPS Proxy Server
  */
 
+const PORT = process.env.PORT
+
 // TODO morgan
 const app = require("express")(),
       morgan = require("morgan"),
@@ -21,4 +23,4 @@ app.get('/weather/:lat/:long', function(req, res){
     res2.setEncoding('utf8')
     res2.pipe(res, {end: true})
   }).end()
-}).listen(8080)
+}).listen(PORT)

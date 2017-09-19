@@ -21,6 +21,9 @@
     "serve-static": "^1.12.4",
     "xhr": "^2.4.0"
   },
+  "engines": {
+  "node": "6.9.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "start-all": "./node_modules/concurrently/src/main.js \"npm run-script start-server\" \"npm run-script start\"",
