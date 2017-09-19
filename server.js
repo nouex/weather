@@ -12,7 +12,7 @@ assert.notStrictEqual(PORT, undefined)
 // TODO morgan
 const app = require("express")(),
       morgan = require("morgan"),
-      serveStatic = require('serve-static')
+      serveStatic = require('serve-static'),
       https = require("https"),
       fs = require("fs")
 
