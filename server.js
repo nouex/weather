@@ -4,7 +4,7 @@
 
 const PORT = process.env.PORT,
       DARK_SKY_KEY = process.env.DARK_SKY_KEY,
-      assert = require('assert');
+      assert = require('assert'); 
 
 assert.notStrictEqual(DARK_SKY_KEY, undefined)
 assert.notStrictEqual(PORT, undefined)
