@@ -17,6 +17,7 @@ import {
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
+import to2Fixed from "../utils/toFixed"
 
 // TODO: export these two so other modules may use them
 const dataPtKeyInfo = {
@@ -104,14 +105,14 @@ const dataPtKeyInfo = {
 }
 
 const unitConversions = {
-  percent: (val) => `${val * 100}%`,
-  fahrenheit: (val) => `${val}°F`,
+  percent: (val) => `${to2Fixed(val * 100)}%`,
+  fahrenheit: (val) => `${to2Fixed(val)}°F`,
   lunation: (val) => `TODO: lunationa`,
-  millibars: (val) => `${val}Mbar`,
+  millibars: (val) => `${to2Fixed(val)}Mbar`,
   "<as is>": (val) => `${val}`,
   "unix time": (val,timezone) => `${moment.tz(unixTime(val), timezone).format('h:mma z')}`,// FIXME
-  mph: (val) => `${val}mph`,
-  miles: (val) => `${val} miles`
+  mph: (val) => `${to2Fixed(val)}mph`,
+  miles: (val) => `${to2Fixed(val)} miles`
 }
 
 const DataBlockCard = (props) => {
