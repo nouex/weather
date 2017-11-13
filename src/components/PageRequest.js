@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types"
+import {Button} from "react-bootstrap"
 
 // TODO: set component state so the component acts just like an input text.
 //  And when clicked on the state updates the value to "Loading..."
 const PageRequest = ({ upPage }) => (
-  <div onClick={ upPage }>
-    More
+  <div onClick={ upPage } className="text-center sticky-top text-center bg-light align-middle p-3">
+    <Button>More</Button>
   </div>
 )
 
