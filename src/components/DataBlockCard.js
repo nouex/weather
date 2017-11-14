@@ -9,15 +9,14 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import iconToUrl from "../utils/iconToUrl"
-import unixTime from "../utils/unixTime"
+import util from "../util"
+const { iconToUrl, unixTime, toFixed } = util
 import moment from "moment-timezone"
 import {
   Card,
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
-import to2Fixed from "../utils/toFixed"
 
 // TODO: export these two so other modules may use them
 const dataPtKeyInfo = {
@@ -105,14 +104,14 @@ const dataPtKeyInfo = {
 }
 
 const unitConversions = {
-  percent: (val) => `${to2Fixed(val * 100)}%`,
-  fahrenheit: (val) => `${to2Fixed(val)}°F`,
+  percent: (val) => `${toFixed(val * 100)}%`,
+  fahrenheit: (val) => `${toFixed(val)}°F`,
   lunation: (val) => `TODO: lunationa`,
-  millibars: (val) => `${to2Fixed(val)}Mbar`,
+  millibars: (val) => `${toFixed(val)}Mbar`,
   "<as is>": (val) => `${val}`,
   "unix time": (val,timezone) => `${moment.tz(unixTime(val), timezone).format('h:mma z')}`,// FIXME
-  mph: (val) => `${to2Fixed(val)}mph`,
-  miles: (val) => `${to2Fixed(val)} miles`
+  mph: (val) => `${toFixed(val)}mph`,
+  miles: (val) => `${toFixed(val)} miles`
 }
 
 const DataBlockCard = (props) => {

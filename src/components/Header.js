@@ -1,9 +1,9 @@
 import React from 'react';
 import cities from "cities"
-import iconToUrl from "../utils/iconToUrl"
+import util from "../util"
+const {iconToUrl, unixTime} = util
 import PropTypes from 'prop-types'
 import moment from "moment-timezone"
-import unixTime from "../utils/unixTime"
 
 const Header = ({ latitude, longitude, icon, time, timezone, temperature,
                   summary, localTime, upLocalTime }) => {

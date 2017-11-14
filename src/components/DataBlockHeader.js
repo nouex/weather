@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types"
-import iconToUrl from "../utils/iconToUrl"
+import util from "../util"
+const {iconToUrl} = util
 
 const DataBlockHeader = ({icon, summary}) => (
   <div>

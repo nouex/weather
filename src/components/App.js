@@ -1,13 +1,13 @@
 import React from 'react';
 import _DataPage from "../containers/DataPage"
-import geo from "../utils/geo"
+import util from "../util"
 
 const App = ({ jsonApiStatus, loadJsonApi }) => {
   switch (Number(jsonApiStatus)) {
     // NOTE: why -1 b/c the pos nums were take when i found out { null }
     // is not passed in jsx
     case -1: // have not intended to load
-      if (geo.enabled()) {
+      if (util.geo.enabled()) {
         loadJsonApi()
         return null
       } else {

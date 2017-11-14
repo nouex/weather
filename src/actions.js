@@ -1,4 +1,5 @@
-import geo from "./utils/geo"
+import util from "./util"
+const geo = util.geo
 import xhr from "xhr"
 
 function setJsonApiStatus(statusN, dataJson, msg) {

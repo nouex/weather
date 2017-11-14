@@ -1,6 +1,8 @@
+'use strict';
+
 // NOTE: This feature is available only in secure contexts (HTTPS), in some or all supporting browsers.
 
-const exp = {
+const geo = {
   enabled: () => "geolocation" in navigator ? true : false,
   getLocation: (cb, cbe) => {
     navigator.geolocation.getCurrentPosition(
@@ -13,4 +15,9 @@ const exp = {
   }
 }
 
-export default exp
+export default {
+  geo,
+  iconToUrl: (icon) => `./icons/${icon}.png`,
+  toFixed: (float, n = 1) => float.toFixed(n),
+  unixTime: t => t * 1000
+}
