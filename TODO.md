@@ -6,7 +6,8 @@ In order of time it will need to complete (guestimation).
 * ~~Add time/day to each <DataBlockCard />~~
 * ~~live time~~
 * alternate colors for each row item in card to easily follow across
-* 40.0% -> 40%
+* attach an icon mapped to summary per card
+* ~~40.0% -> 40%~~
 * dropdown to select location
 * ~~move summary and dropdown out of DataBlock, summary should only display once
   , dropdow is not per DataBlock, move current.summary from datablock to header~~

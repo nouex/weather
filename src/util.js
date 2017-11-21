@@ -18,6 +18,6 @@ const geo = {
 export default {
   geo,
   iconToUrl: (icon) => `./icons/${icon}.png`,
-  toFixed: (float, n = 1) => float.toFixed(n),
+  toInt: (n) => ~~n,
   unixTime: t => t * 1000
 }

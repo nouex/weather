@@ -16,7 +16,7 @@ import {
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
-const { iconToUrl, unixTime, toFixed } = util
+const { iconToUrl, unixTime, toInt } = util
 
 
 // TODO: export these two so other modules may use them
@@ -105,14 +105,14 @@ const dataPtKeyInfo = {
 }
 
 const unitConversions = {
-  percent: (val) => `${toFixed(val * 100)}%`,
-  fahrenheit: (val) => `${toFixed(val)}°F`,
+  percent: (val) => `${toInt(val * 100)}%`,
+  fahrenheit: (val) => `${toInt(val)}°F`,
   lunation: (val) => `TODO: lunationa`,
-  millibars: (val) => `${toFixed(val)}Mbar`,
+  millibars: (val) => `${toInt(val)}Mbar`,
   "<as is>": (val) => `${val}`,
   "unix time": (val,timezone) => `${moment.tz(unixTime(val), timezone).format('h:mma z')}`,// FIXME
-  mph: (val) => `${toFixed(val)}mph`,
-  miles: (val) => `${toFixed(val)} miles`
+  mph: (val) => `${toInt(val)}mph`,
+  miles: (val) => `${toInt(val)} miles`
 }
 
 const DataBlockCard = (props) => {
