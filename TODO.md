@@ -4,6 +4,7 @@ In order of time it will need to complete (guestimation).
 
 * ~~add padding to cards~~
 * ~~Add time/day to each <DataBlockCard />~~
+* ~~live time~~
 * alternate colors for each row item in card to easily follow across
 * 40.0% -> 40%
 * dropdown to select location
@@ -11,9 +12,10 @@ In order of time it will need to complete (guestimation).
   , dropdow is not per DataBlock, move current.summary from datablock to header~~
 * rename state.localTime -> state.freshTime
 * mak header slightly smaller in height
-* improve More button
+* ~~improve More button~~
 * inline TODOs
-* option to select °C or °F
+* settings
+  * option to select °C or °F
 * ~~live clock in <Header /> with a "last updated: 7 mins ago" below it and button to refresh~~
 * ~~page to limit N elements per scroll (like insta) until we get to the end (limit) of available data~~
 * cleanup components/DataBlockCard.js

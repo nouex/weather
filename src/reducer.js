@@ -26,12 +26,11 @@ function mainReducer(state = initState, action) {
     case "UP_PAGE":
       return Object.assign({}, state, { page: state.page +1 })
 
-    case "UP_LOCAL_TIME":
+    case "UP_LOCAL_TIME": // sync state.localTime
       let localTime = state.localTime === null
         ? state.data.currently.time
-        : state.localTime
-        
-      localTime += 1
+        : +(new Date) / 1000 // -> to UNIX time
+
       return Object.assign({}, state, { localTime })
 
     default:

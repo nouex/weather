@@ -8,6 +8,7 @@ import geolocation from "mock-geolocation"
 import xhrMock from "xhr-mock"
 import actions from "./actions"
 const loadJsonApi = actions.loadJsonApi
+const upLocalTime = actions.upLocalTime
 
 describe('loadJsonApi()', function () {
   it("returns a function", function () {
@@ -105,4 +106,21 @@ describe('loadJsonApi()', function () {
     })
     geolocation.send(location)
   })
+});
+
+describe('upLocalTime()', function () {
+  let fn
+  it('returns a function', function () {
+    fn = upLocalTime()
+    expect(fn).toEqual(jasmine.any(Function))
+  });
+
+  xit('fn() sets fn to be called after 20 secs', function (done) {
+    // I can't figure a way to test it.  upLocalTime() return a new function
+    // expression each time it's called so syping on fn is no use.
+  });
+
+  it('fn() dispatches UP_LOCAL_TIME', function (done) {
+    fn((o) => {expect(o.type).toEqual("UP_LOCAL_TIME"); done()})
+  });
 });
