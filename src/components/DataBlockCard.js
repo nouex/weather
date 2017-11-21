@@ -128,10 +128,7 @@ const DataBlockCard = (props) => {
     format = dataPtTimeFormats[props.dataBlockName]
     formattedTime = moment(unixTime(props.time)).format(format)
 
-    // 2. build list items
-    let largestDescLen, paddingLen = 5, tempInd = null,
-        calcPadding = (desc) => " ".repeat((largestDescLen - desc.length) + paddingLen)
-
+    // 2. validate data point props build card items
     const dataPtKeysUsed = Object.keys(dataPtKeyInfo).filter((key) => {
       if (!(key in props)) {
         if (!dataPtKeyInfo[key].optional)
@@ -140,15 +137,11 @@ const DataBlockCard = (props) => {
       } else return true
     })
 
-    largestDescLen = dataPtKeysUsed.reduce((prev, curr) => {
-      curr = dataPtKeyInfo[curr].desc.length
-      return Math.max(prev, curr)
-    }, -Infinity)
-
-    let cardItems = dataPtKeysUsed.map((key, ind) => {
+    // 3. build card items
+    let indOfTemp, cardItems = dataPtKeysUsed.map((key, ind) => {
       let { unit, omittedByDataBlks } = dataPtKeyInfo[key]
 
-      key === "temperature" ? tempInd = ind : void(0)
+      key === "temperature" ? indOfTemp = ind : void(0)
 
       if (omittedByDataBlks && omittedByDataBlks.includes(props.dataBlockName))
         return null
@@ -163,8 +156,8 @@ const DataBlockCard = (props) => {
     })
 
     // mk sure "temperature" is at the top
-    if (tempInd !== null) {
-      cardItems.unshift(cardItems.splice(tempInd, 1)[0])
+    if (indOfTemp !== null) {
+      cardItems.unshift(cardItems.splice(indOfTemp, 1)[0])
     }
 
     // doing `item.props.className` is not allowed (props is read-only)
