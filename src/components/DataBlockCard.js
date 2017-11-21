@@ -155,11 +155,12 @@ const DataBlockCard = (props) => {
       }
     })
 
-    // mk sure "temperature" is at the top
+    // 4. mk sure "temperature" is at the top
     if (indOfTemp !== null) {
       cardItems.unshift(cardItems.splice(indOfTemp, 1)[0])
     }
 
+    // 5. alternate colors for readability across row
     // doing `item.props.className` is not allowed (props is read-only)
     // workaround: wrap under a div that has "bd-light"
     cardItems = cardItems.map((item, ind) => {
