@@ -154,7 +154,7 @@ const DataBlockCard = (props) => {
         return null
       else {
         return (
-          <div key={ind} className="d-flex" style={{justifyContent: "space-between"}}>
+          <div key={ind} className="d-flex px-3 py-1" style={{justifyContent: "space-between"}}>
             <div className="text-secondary">{ dataPtKeyInfo[key].desc }</div>
             <div>{ unitConversions[dataPtKeyInfo[key].unit](props[key], "unix time" === dataPtKeyInfo[key].unit ? props.timezone : void(0)) }</div>
           </div>
@@ -174,7 +174,7 @@ const DataBlockCard = (props) => {
             { formattedTime }
             <img src="transparent.png" className={ `icon-sm-${props.icon} float-right` }/>
           </CardHeader>
-            <div className="p-3">
+            <div>
               { cardItems }
             </div>
         </CardBlock>

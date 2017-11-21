@@ -61,4 +61,4 @@ function config(intrinsicCellWidth, rows, columns, map, url) {
 
 let matrixPosToCss = config(116, 6, 5, map, "\"../imgs/weather_icons.png\"")
 console.log(matrixPosToCss(116))
-console.log(matrixPosToCss(40, "sm"))
+console.log(matrixPosToCss(37, "sm"))
