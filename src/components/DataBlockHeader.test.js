@@ -12,7 +12,6 @@ describe('<DataBlockHeader />', function () {
 
     expect(wrapper.getNode()).toEqual(
       <div>
-          <img src="./icons/sunny.png" />
           <p>{props.summary}</p>
       </div>
     )

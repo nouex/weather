@@ -28,7 +28,6 @@ describe('<DataBlockCard />', function () {
     expect((cardHeader = wrapper.find("Card > CardBlock > CardHeader"))
       .exists()).toBeTruthy()
     expect(cardHeader.childAt(0).text()).toEqual("Thursday 12pm")
-    expect(wrapper.find("Card > CardBlock > img").exists()).toBeTruthy()
     expect(wrapper.find("Card > CardBlock > div").exists()).toBeTruthy()
     expect(wrapper.find("Card > CardBlock > div").children().length)
       .toBeGreaterThan(0)

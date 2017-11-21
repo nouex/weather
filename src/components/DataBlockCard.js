@@ -16,7 +16,7 @@ import {
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
-const { iconToUrl, unixTime, toInt } = util
+const { unixTime, toInt } = util
 
 
 // TODO: export these two so other modules may use them
@@ -173,7 +173,6 @@ const DataBlockCard = (props) => {
           <CardHeader>
             { formattedTime }
           </CardHeader>
-            <img className="card-img-top" src={ iconToUrl(props.icon) } />
             <div className="p-3">
               { cardItems }
             </div>
