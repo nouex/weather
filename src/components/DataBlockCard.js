@@ -164,9 +164,10 @@ const DataBlockCard = (props) => {
     // doing `item.props.className` is not allowed (props is read-only)
     // workaround: wrap under a div that has "bd-light"
     cardItems = cardItems.map((item, ind) => {
+      if (item === null) return null
       if (ind % 2 === 1) {
         return (
-          <div className="bg-light" key={ind}>{item}</div>
+          <div className="bg-light" key={item.key}>{item}</div>
         )
       } else return item
     })
