@@ -145,7 +145,7 @@ const DataBlockCard = (props) => {
       return Math.max(prev, curr)
     }, -Infinity)
 
-    const cardItems = dataPtKeysUsed.map((key, ind) => {
+    let cardItems = dataPtKeysUsed.map((key, ind) => {
       let { unit, omittedByDataBlks } = dataPtKeyInfo[key]
 
       key === "temperature" ? tempInd = ind : void(0)
@@ -166,6 +166,16 @@ const DataBlockCard = (props) => {
     if (tempInd !== null) {
       cardItems.unshift(cardItems.splice(tempInd, 1)[0])
     }
+
+    // doing `item.props.className` is not allowed (props is read-only)
+    // workaround: wrap under a div that has "bd-light"
+    cardItems = cardItems.map((item, ind) => {
+      if (ind % 2 === 1) {
+        return (
+          <div className="bg-light" key={ind}>{item}</div>
+        )
+      } else return item
+    })
 
     return (
       <Card className="mb-5 d-block mx-auto w-75">
