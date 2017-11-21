@@ -1,51 +1,122 @@
 .icon-clear-day {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") 0px -232px;  }
+      background: url("../imgs/weather_icons.png") 0px -232px;
+      background-size: 580px 696px; }
 
       .icon-clear-night {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -464px -464px;  }
+      background: url("../imgs/weather_icons.png") -464px -464px;
+      background-size: 580px 696px; }
 
       .icon-rain {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -464px -348px;  }
+      background: url("../imgs/weather_icons.png") -464px -348px;
+      background-size: 580px 696px; }
 
       .icon-snow {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -348px 0px;  }
+      background: url("../imgs/weather_icons.png") -348px 0px;
+      background-size: 580px 696px; }
 
       .icon-sleet {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -464px -116px;  }
+      background: url("../imgs/weather_icons.png") -464px -116px;
+      background-size: 580px 696px; }
 
       .icon-wind {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -232px -232px;  }
+      background: url("../imgs/weather_icons.png") -232px -232px;
+      background-size: 580px 696px; }
 
       .icon-fog {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -116px -348px;  }
+      background: url("../imgs/weather_icons.png") -116px -348px;
+      background-size: 580px 696px; }
 
       .icon-cloudy {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -348px -232px;  }
+      background: url("../imgs/weather_icons.png") -348px -232px;
+      background-size: 580px 696px; }
 
       .icon-partly-cloudy-day {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -116px -232px;  }
+      background: url("../imgs/weather_icons.png") -116px -232px;
+      background-size: 580px 696px; }
 
       .icon-partly-cloudy-night {
       width: 116px;
       height: 116px;
-      background: url("../imgs/weather_icons.png") -116px -580px;  }
+      background: url("../imgs/weather_icons.png") -116px -580px;
+      background-size: 580px 696px; }
+
+      
+.icon-sm-clear-day {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") 0px -80px;
+      background-size: 200px 240px; }
+
+      .icon-sm-clear-night {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -160px -160px;
+      background-size: 200px 240px; }
+
+      .icon-sm-rain {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -160px -120px;
+      background-size: 200px 240px; }
+
+      .icon-sm-snow {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -120px 0px;
+      background-size: 200px 240px; }
+
+      .icon-sm-sleet {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -160px -40px;
+      background-size: 200px 240px; }
+
+      .icon-sm-wind {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -80px -80px;
+      background-size: 200px 240px; }
+
+      .icon-sm-fog {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -40px -120px;
+      background-size: 200px 240px; }
+
+      .icon-sm-cloudy {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -120px -80px;
+      background-size: 200px 240px; }
+
+      .icon-sm-partly-cloudy-day {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -40px -80px;
+      background-size: 200px 240px; }
+
+      .icon-sm-partly-cloudy-night {
+      width: 40px;
+      height: 40px;
+      background: url("../imgs/weather_icons.png") -40px -200px;
+      background-size: 200px 240px; }
 
       

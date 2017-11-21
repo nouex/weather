@@ -13,36 +13,39 @@ const map = {
   "partly-cloudy-night":  [2, 6]
 }
 
-function matrixPosToCss(map, iw, ih, url) {
-  let retMap1 = Object.create(null),
-      retMap2 = Object.create(null)
+function config(intrinsicCellWidth, rows, columns, map, url) {
+  // NOTE: instrinsic cell height is disregarding b/c we assume it's a square
+  return function matrixPosToCss(iw, midfix) {
+    let retMap2 = Object.create(null),
+        scaledSpriteW = (iw / intrinsicCellWidth) * (intrinsicCellWidth * columns),
+        scaledSpriteH = iw * rows
 
-  Object.keys(map).forEach((key) => {
-    let [x, y] = map[key],
-        startX, startY
+    midfix = midfix && midfix.length ? midfix + "-" : ""
 
-    startX = iw * (x -1)
-    startY = ih * (y -1)
-    retMap1[key] = [startX === 0 ? 0 : -startX, startY === 0 ? 0 : -startY]
-  })
+    Object.keys(map).map((key) => {
+      let [x, y] = map[key],
+          startX, startY
 
-  Object.keys(retMap1).forEach((key) => {
-    let [offX, offY] = retMap1[key]
-
-    retMap2[key] =
-    `.icon-${key} {
+      startX = iw * (x -1)
+      startY = iw * (y -1)
+      return [key,[startX === 0 ? 0 : -startX, startY === 0 ? 0 : -startY]]
+    }).forEach(([key, [offX, offY]]) => {
+      retMap2[key] =
+      `.icon-${midfix}${key} {
       width: ${iw}px;
-      height: ${ih}px;
-      background: url(${url}) ${offX}px ${offY}px;  }
+      height: ${iw}px;
+      background: url(${url}) ${offX}px ${offY}px;
+      background-size: ${scaledSpriteW}px ${scaledSpriteH}px; }
 
       `
-  })
+    })
 
-  function joinCss(map) {
-    return Object.keys(map).map((key) => map[key]).join("")
+    function joinCss(map) {
+      return Object.keys(map).map((key) => map[key]).join("")
+    }
+
+    return joinCss(retMap2)
   }
-
-  return joinCss(retMap2)
 }
 
 
@@ -56,4 +59,6 @@ function matrixPosToCss(map, iw, ih, url) {
  *  Usage: node sprite_map_css.js > src/css/icons.css
  */
 
-console.log(matrixPosToCss(map, 116, 116, "\"../imgs/weather_icons.png\""))
+let matrixPosToCss = config(116, 6, 5, map, "\"../imgs/weather_icons.png\"")
+console.log(matrixPosToCss(116))
+console.log(matrixPosToCss(40, "sm"))
