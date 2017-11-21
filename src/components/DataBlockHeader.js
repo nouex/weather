@@ -3,7 +3,8 @@ import PropTypes from "prop-types"
 import util from "../util"
 
 const DataBlockHeader = ({icon, summary}) => (
-  <div>
+  <div className="text-center">
+      <img src="transparent.png" className={`icon-sm-${icon}`}/>
       <p>{summary}</p>
   </div>
 )

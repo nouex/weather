@@ -11,7 +11,8 @@ describe('<DataBlockHeader />', function () {
     const wrapper = shallow(<DataBlockHeader {...props}/>)
 
     expect(wrapper.getNode()).toEqual(
-      <div>
+      <div className="text-center">
+          <img src="transparent.png" className="icon-sm-sunny"/>
           <p>{props.summary}</p>
       </div>
     )
