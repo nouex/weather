@@ -10,13 +10,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 import util from "../util"
-const { iconToUrl, unixTime, toFixed } = util
 import moment from "moment-timezone"
 import {
   Card,
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
+const { iconToUrl, unixTime, toFixed } = util
+
 
 // TODO: export these two so other modules may use them
 const dataPtKeyInfo = {
@@ -144,7 +145,7 @@ const DataBlockCard = (props) => {
       return Math.max(prev, curr)
     }, -Infinity)
 
-    const listItems = dataPtKeysUsed.map((key, ind) => {
+    const cardItems = dataPtKeysUsed.map((key, ind) => {
       let { unit, omittedByDataBlks } = dataPtKeyInfo[key]
 
       key === "temperature" ? tempInd = ind : void(0)
@@ -153,20 +154,17 @@ const DataBlockCard = (props) => {
         return null
       else {
         return (
-          <li key={ind}>
-            <span className="text-secondary">
-              { dataPtKeyInfo[key].desc }
-              { `${calcPadding(dataPtKeyInfo[key].desc)}` }
-            </span>
-
-            { unitConversions[dataPtKeyInfo[key].unit](props[key], "unix time" === dataPtKeyInfo[key].unit ? props.timezone : void(0)) }</li>
+          <div key={ind} className="d-flex" style={{justifyContent: "space-between"}}>
+            <div className="text-secondary">{ dataPtKeyInfo[key].desc }</div>
+            <div>{ unitConversions[dataPtKeyInfo[key].unit](props[key], "unix time" === dataPtKeyInfo[key].unit ? props.timezone : void(0)) }</div>
+          </div>
         )
       }
     })
 
     // mk sure "temperature" is at the top
     if (tempInd !== null) {
-      listItems.unshift(listItems.splice(tempInd, 1)[0])
+      cardItems.unshift(cardItems.splice(tempInd, 1)[0])
     }
 
     return (
@@ -176,13 +174,9 @@ const DataBlockCard = (props) => {
             { formattedTime }
           </CardHeader>
             <img className="card-img-top" src={ iconToUrl(props.icon) } />
-            <ul style={{
-              listStyleType: "none",
-              fontFamily: "monospace",
-              whiteSpace: "pre"
-            }}>
-              { listItems }
-            </ul>
+            <div className="p-3">
+              { cardItems }
+            </div>
         </CardBlock>
       </Card>
     )

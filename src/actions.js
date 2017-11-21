@@ -1,6 +1,6 @@
 import util from "./util"
-const geo = util.geo
 import xhr from "xhr"
+const geo = util.geo
 
 function setJsonApiStatus(statusN, dataJson, msg) {
   const actionType = "SET_JSON_API_STATUS"
