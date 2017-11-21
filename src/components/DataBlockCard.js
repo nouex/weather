@@ -108,10 +108,10 @@ const unitConversions = {
   percent: (val) => `${toInt(val * 100)}%`,
   fahrenheit: (val) => `${toInt(val)}°F`,
   lunation: (val) => `TODO: lunationa`,
-  millibars: (val) => `${toInt(val)}Mbar`,
+  millibars: (val) => `${toInt(val)} Mbar`,
   "<as is>": (val) => `${val}`,
   "unix time": (val,timezone) => `${moment.tz(unixTime(val), timezone).format('h:mma z')}`,// FIXME
-  mph: (val) => `${toInt(val)}mph`,
+  mph: (val) => `${toInt(val)} mph`,
   miles: (val) => `${toInt(val)} miles`
 }
 
