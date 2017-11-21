@@ -55,7 +55,8 @@ const dataPtKeyInfo = {
   summary: {
     optional: true,
     unit: "<as is>",
-    desc: "TODO: this is summary go at top"
+    desc: "",
+    omittedByDataBlks: ["minutely", "hourly", "daily"]
   },
   sunriseTime: {
     optional: true,
@@ -153,7 +154,7 @@ const DataBlockCard = (props) => {
           </div>
         )
       }
-    })
+    }).filter((item) => item !== null)
 
     // 4. mk sure "temperature" is at the top
     if (indOfTemp !== null) {
@@ -164,7 +165,6 @@ const DataBlockCard = (props) => {
     // doing `item.props.className` is not allowed (props is read-only)
     // workaround: wrap under a div that has "bd-light"
     cardItems = cardItems.map((item, ind) => {
-      if (item === null) return null
       if (ind % 2 === 1) {
         return (
           <div className="bg-light" key={item.key}>{item}</div>
