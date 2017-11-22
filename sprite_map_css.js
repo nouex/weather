@@ -1,5 +1,9 @@
 'use strict';
 
+function toInt(n) {
+  return ~~n
+}
+
 const map = {
   "clear-day":            [1, 3],
   "clear-night":          [5, 5],
@@ -32,10 +36,10 @@ function config(intrinsicCellWidth, rows, columns, map, url) {
     }).forEach(([key, [offX, offY]]) => {
       retMap2[key] =
       `.icon-${midfix}${key} {
-      width: ${iw}px;
-      height: ${iw}px;
-      background: url(${url}) ${offX}px ${offY}px;
-      background-size: ${scaledSpriteW}px ${scaledSpriteH}px; }
+      width: ${toInt(iw)}px;
+      height: ${toInt(iw)}px;
+      background: url(${url}) ${toInt(offX)}px ${toInt(offY)}px;
+      background-size: ${toInt(scaledSpriteW)}px ${toInt(scaledSpriteH)}px; }
 
       `
     })
