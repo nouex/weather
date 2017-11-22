@@ -105,10 +105,34 @@ const dataPtKeyInfo = {
   }
 }
 
-const unitConversions = {
+export const unitConversions = {
   percent: (val) => `${toInt(val * 100)}%`,
   fahrenheit: (val) => `${toInt(val)}°F`,
-  lunation: (val) => `TODO: lunationa`,
+  lunation: (val) => {
+    // 1. map moon phases to values
+    let phases = [
+      "New Moon", "Waxing Crescent", "1st Quarter", "Waxing Gibbous",
+      "Full Moon", "Waning Gibbious", "3rd Quarter", "Waning Crescent"
+    ]
+    let part = 1 / phases.length,
+        currPart = 0 - part
+    phases = phases.map((phaseName) => {
+      currPart += part
+      return [currPart, phaseName]
+    })
+
+    // 2. determine current moon phase by looking for index closest to val
+    let indOfClosest
+    phases.reduce((prev, curr, ind) => {
+      let [phaseVal, phaseName] = curr
+      if (Math.abs(val - phaseVal) < prev) {
+        indOfClosest = ind
+        return val - phaseVal
+      } else return prev
+    }, Infinity)
+
+    return phases[indOfClosest][1]
+  },
   millibars: (val) => `${toInt(val)} Mbar`,
   "<as is>": (val) => `${val}`,
   "unix time": (val,timezone) => `${moment.tz(unixTime(val), timezone).format('h:mma z')}`,// FIXME

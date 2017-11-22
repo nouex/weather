@@ -1,3 +1,5 @@
+// TODO: there has to be a leaner way to use named exports for unitConversions
+import * as dataBlockCardExport from "./DataBlockCard"
 import React from "react"
 import { shallow  } from 'enzyme';
 import DataBlockCard from "./DataBlockCard"
@@ -6,6 +8,7 @@ import {
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
+const {unitConversions} = dataBlockCardExport
 
 describe('<DataBlockCard />', function () {
   it("renders a card structure", function () {
@@ -32,4 +35,25 @@ describe('<DataBlockCard />', function () {
     expect(wrapper.find("Card > CardBlock > div").children().length)
       .toBeGreaterThan(0)
   })
+});
+
+describe('unitConversions', function () {
+  describe('lunation', function () {
+    const {lunation} = unitConversions
+    it('val maps to correct moon phase', function () {
+      // multiples of 1/8
+      expect(lunation(0)).toBe("new")
+      expect(lunation(0.125)).toBe("waxing crescent")
+      expect(lunation(0.25)).toBe("first quarter")
+      expect(lunation(0.375)).toBe("waxing gibbous")
+      expect(lunation(0.5)).toBe("full")
+      expect(lunation(0.625)).toBe("waning gibbious")
+      expect(lunation(0.75)).toBe("third quarter")
+      expect(lunation(0.875)).toBe("waning crescent")
+
+      // fractionals
+      expect(lunation(0.5625 + 0.0001)).toBe("waning gibbious")
+      expect(lunation(0.5625 - 0.0001)).toBe("full")
+    });
+  });
 });
