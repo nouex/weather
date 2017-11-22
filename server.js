@@ -4,7 +4,7 @@
 
 const PORT = process.env.PORT,
       DARK_SKY_KEY = process.env.DARK_SKY_KEY,
-      assert = require('assert'); 
+      assert = require('assert');
 
 assert.notStrictEqual(DARK_SKY_KEY, undefined)
 assert.notStrictEqual(PORT, undefined)
@@ -19,11 +19,6 @@ const app = require("express")(),
 const secretKey = process.env.DARK_SKY_KEY.trim()
 assert.strictEqual(secretKey.length, 32)
 
-
-app.use(function (req, res) {
-  console.log("DEBUGGIGN TIME!!!!!!")
-  console.log(req.url. req.path)
-})
 app.use(morgan("tiny"))
 app.use(serveStatic('build', {'index': ['index.html', 'index.htm']}))
 app.get('/weather/:lat/:long', function(req, res){
