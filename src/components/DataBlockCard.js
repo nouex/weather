@@ -202,7 +202,12 @@ const DataBlockCard = (props) => {
         <CardBlock>
           <CardHeader>
             { formattedTime }
-            <img src="transparent.png" className={ `icon-sm-${props.icon} float-right` }/>
+            {
+              props.icon !== undefined ?
+                (<img src="transparent.png"
+                      className={ `icon-sm-${props.icon} float-right` }/>) :
+                   null
+            }
           </CardHeader>
             <div>
               { cardItems }
