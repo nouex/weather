@@ -25,7 +25,7 @@ describe('<Header />', function () {
     // NOTE: a real test would mock moment.fromNow() or the system time to
     //  be consistent or Date if that's where moment get's it's time from
     expect(wrapper.getNode()).toEqual(
-      <header className="sticky-top text-center bg-light align-middle p-3">
+      <header className="text-center bg-light align-middle p-3">
           <div style={{
             position: "absolute",
             marginRight: 0,

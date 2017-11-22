@@ -16,7 +16,7 @@ const Header = ({ latitude, longitude, icon, time, timezone, temperature,
   }
 
   return (
-    <header className="sticky-top text-center bg-light align-middle p-3">
+    <header className="text-center bg-light align-middle p-3">
       <div style={{
         position: "absolute",
         marginRight: 0,
