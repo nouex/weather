@@ -15,7 +15,6 @@
   , dropdow is not per DataBlock, move current.summary from datablock to header~~
 * mak header slightly smaller in height
 * ~~improve More button~~
-* inline TODOs
 * settings
   * option to select °C or °F
 * ~~live clock in <Header /> with a "last updated: 7 mins ago" below it and button to refresh~~
@@ -28,3 +27,4 @@
 state property of <Header />
 * cleanup components/DataBlockCard.js
 * rename state.localTime -> state.freshTime
+* inline TODOs
