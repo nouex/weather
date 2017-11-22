@@ -42,18 +42,18 @@ describe('unitConversions', function () {
     const {lunation} = unitConversions
     it('val maps to correct moon phase', function () {
       // multiples of 1/8
-      expect(lunation(0)).toBe("new")
-      expect(lunation(0.125)).toBe("waxing crescent")
-      expect(lunation(0.25)).toBe("first quarter")
-      expect(lunation(0.375)).toBe("waxing gibbous")
-      expect(lunation(0.5)).toBe("full")
-      expect(lunation(0.625)).toBe("waning gibbious")
-      expect(lunation(0.75)).toBe("third quarter")
-      expect(lunation(0.875)).toBe("waning crescent")
+      expect(lunation(0)).toBe("New Moon")
+      expect(lunation(0.125)).toBe("Waxing Crescent")
+      expect(lunation(0.25)).toBe("1st Quarter")
+      expect(lunation(0.375)).toBe("Waxing Gibbous")
+      expect(lunation(0.5)).toBe("Full Moon")
+      expect(lunation(0.625)).toBe("Waning Gibbious")
+      expect(lunation(0.75)).toBe("3rd Quarter")
+      expect(lunation(0.875)).toBe("Waning Crescent")
 
       // fractionals
-      expect(lunation(0.5625 + 0.0001)).toBe("waning gibbious")
-      expect(lunation(0.5625 - 0.0001)).toBe("full")
+      expect(lunation(0.5625 + 0.0001)).toBe("Waning Gibbious")
+      expect(lunation(0.5625 - 0.0001)).toBe("Full Moon")
     });
   });
 });
