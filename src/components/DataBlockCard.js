@@ -163,14 +163,15 @@ const DataBlockCard = (props) => {
     })
 
     // 3. build card items
-    let indOfTemp, cardItems = dataPtKeysUsed.map((key, ind) => {
+    let indOfTemp = null, nullCts = 0, cardItems = dataPtKeysUsed.map((key, ind) => {
       let { unit, omittedByDataBlks } = dataPtKeyInfo[key]
 
-      key === "temperature" ? indOfTemp = ind : void(0)
+      key === "temperature" ? indOfTemp = (ind - nullCts) : void(0)
 
-      if (omittedByDataBlks && omittedByDataBlks.includes(props.dataBlockName))
+      if (omittedByDataBlks && omittedByDataBlks.includes(props.dataBlockName)) {
+        ++nullCts
         return null
-      else {
+      } else {
         return (
           <div key={ind} className="d-flex px-3 py-1" style={{justifyContent: "space-between"}}>
             <div className="text-secondary">{ dataPtKeyInfo[key].desc }</div>
