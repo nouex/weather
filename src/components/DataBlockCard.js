@@ -100,6 +100,9 @@ const DataBlockCard = (props) => {
     // 5. alternate colors for readability across row
     // doing `item.props.className` is not allowed (props is read-only)
     // workaround: wrap under a div that has "bd-light"
+    // NOTE: i've thought of doing this in index.css but we would have to hard
+    // code whatever bg-light is b/c there is no way of applying a css class
+    // from css
     cardItems = cardItems.map((item, ind) => {
       if (ind % 2 === 1) {
         return (
