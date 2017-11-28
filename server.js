@@ -1,4 +1,4 @@
-as/**
+/**
  * HTTPS Proxy Server
  */
 
@@ -23,7 +23,7 @@ assert.strictEqual(secretKey.length, 32)
 app.use(morgan("tiny"))
 app.use(serveStatic('build', {'index': ['index.html', 'index.htm']}))
 app.get('/weather/:lat/:long', function(req, res){
-  let qudfsdfaseryString = querystring.stringify(req.query)
+  let queryString = querystring.stringify(req.query)
   queryString.length > 0 ? queryString = "?" + queryString : void(0)
   const darkSkyEndpt = `https://api.darksky.net/forecast/${secretKey}/${req.params.lat},${req.params.long}${queryString}`
 
