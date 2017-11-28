@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import DataPage from "./DataPage"
 import _Header from "../containers/Header"
 import _DataBlock from "../containers/DataBlock"
-import _DataBlockSelector from "../containers/DataBlockSelector"
 import _PageRequest from "../containers/PageRequest"
+import Controls from "./Controls"
 
 describe('<DataPage />', function () {
   it('in general, renders correctly', function () {
@@ -17,7 +17,7 @@ describe('<DataPage />', function () {
     expect(shallow(<DataPage {...props}/>).getNode()).toEqual(
       <div>
         <_Header />
-        <_DataBlockSelector />
+        <Controls />
         <_DataBlock />
         <_PageRequest />
       </div>
@@ -35,7 +35,7 @@ describe('<DataPage />', function () {
       expect(shallow(<DataPage {...props}/>).getNode()).toEqual(
         <div>
           <_Header />
-          <_DataBlockSelector />
+          <Controls />
           <_DataBlock />
           <_PageRequest />
         </div>
@@ -52,7 +52,7 @@ describe('<DataPage />', function () {
       expect(shallow(<DataPage {...props}/>).getNode()).toEqual(
         <div>
           <_Header />
-          <_DataBlockSelector />
+          <Controls />
           <_DataBlock />
           { null }
         </div>

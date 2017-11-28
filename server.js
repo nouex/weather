@@ -1,10 +1,11 @@
-/**
+as/**
  * HTTPS Proxy Server
  */
 
 const PORT = process.env.PORT,
       DARK_SKY_KEY = process.env.DARK_SKY_KEY,
-      assert = require('assert');
+      assert = require('assert'),
+      querystring = require("querystring");
 
 assert.notStrictEqual(DARK_SKY_KEY, undefined)
 assert.notStrictEqual(PORT, undefined)
@@ -22,7 +23,9 @@ assert.strictEqual(secretKey.length, 32)
 app.use(morgan("tiny"))
 app.use(serveStatic('build', {'index': ['index.html', 'index.htm']}))
 app.get('/weather/:lat/:long', function(req, res){
-  const darkSkyEndpt = `https://api.darksky.net/forecast/${secretKey}/${req.params.lat},${req.params.long}`
+  let qudfsdfaseryString = querystring.stringify(req.query)
+  queryString.length > 0 ? queryString = "?" + queryString : void(0)
+  const darkSkyEndpt = `https://api.darksky.net/forecast/${secretKey}/${req.params.lat},${req.params.long}${queryString}`
 
   https.request(darkSkyEndpt, (res2) => {
     res2.setEncoding('utf8')

@@ -16,12 +16,14 @@
 * ~~improve More button~~
 * ~~live clock in <Header /> with a "last updated: 7 mins ago" below it and button to refresh~~
 * ~~page to limit N elements per scroll (like insta) until we get to the end (limit) of available data~~
-* request params
-  * option to select °C or °F
-  * let user select location
-* add a refresh button to refetch the data
-* minutely cards are weird, fix it
-* use css to alternate row colors
+* request params (branch created)
+  * option to select °C or °F (must reflect requestParams.units)
+  * let user select location (time machine request). google maps iframe
+  * select previous time (time machine request)
+  that gives us the coordinates of the chosen location?
+* ~~add a refresh button to refetch the data (branch created)~~
+* ~~minutely cards are weird, fix it~~
+* use css to alternate row colors (branch created)
 
 
 ### Refactoring:
@@ -31,3 +33,6 @@ state property of <Header />
 * cleanup components/DataBlockCard.js
 * rename state.localTime -> state.freshTime
 * inline TODOs
+* seperation of concerns: e.g. components/Refresh.js now has a lil more action.
+  Maybe put all handler stuff in decorators/Loading.js to keep components/*
+  strictly presentation-wise

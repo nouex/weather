@@ -1,10 +1,14 @@
 import React from "react"
 import { shallow  } from 'enzyme';
 import Header from "./Header"
+import util from "../util"
 
 /**
  * TODO:
  *  1. test that it calls upLocalTime() when localTim === null
+ *  2. this is one of the first tests i wrote using enzyme, nowadays i just
+ *    assert the basic structure and not the details b/c then every micro change
+ *    will break
  */
 
 describe('<Header />', function () {
@@ -18,7 +22,8 @@ describe('<Header />', function () {
       temperature: 48.71,
       summary: "rain and water",
       upLocalTime: () => { },
-      localTime: null
+      localTime: null,
+      unit: "us"
     }
     const wrapper = shallow(<Header {...props}/>)
 
@@ -36,7 +41,7 @@ describe('<Header />', function () {
           className="m-3">Matlock, WA</div>
           <img src="transparent.png" className={ `icon-${props.icon}` }/>
           <div>{ props.summary }</div>
-          <div>{ props.temperature }°F</div>
+          <div>48°F</div>
           <div><date>{ "1:12pm PDT" }</date></div>
           <div className="text-secondary" style={{ fontSize: "0.8em" }}>Last updated {jasmine.any(String)}</div>
         </header>

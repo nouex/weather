@@ -1,144 +1,54 @@
 'use strict';
+
 /**
  * DataBlockCard is analoguous to a "Data Point" in Dark Sky terminology
  *
- *  TODO: propTypes
- *  TODO:  57.99999999999999% -> 57.9%
  *  TODO: test
  */
 
 import React from "react"
 import PropTypes from "prop-types"
-import util from "../util"
 import moment from "moment-timezone"
 import {
   Card,
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
-const { unixTime, toInt } = util
+import darkSkyData from "../dark-sky-data"
+import util from "../util"
+const { unixTime, toInt, dataHumanizers } = util
 
+let deepClone = (o) => JSON.parse(JSON.stringify(o));
+darkSkyData.si = deepClone(darkSkyData.us);
+(() => {
+  const si = darkSkyData.si
+  Object.assign(si.temperature, {unit: "celsius"})
+  Object.assign(si.dewPoint, {unit: "celsius"})
+  Object.assign(si.windSpeed, {unit: "mps"}) // meters per second
+  Object.assign(si.windGust, {unit: "mps"})
+  Object.assign(si.pressure, {unit: "hectopascals"})
+  Object.assign(si.visibility, {unit: "km"})
+  Object.assign(si.precipIntensity, {unit: "mmh"})
+  Object.assign(si.precipIntensityMax, {unit: "mmh"})
+  Object.assign(si.precipAccumulation, {unit: "cm"})
+  Object.assign(si.apparentTemperature, {unit: "celsius"})
+})()
 
-// TODO: export these two so other modules may use them
-const dataPtKeyInfo = {
-  cloudCover: {
-    optional: true,
-    unit: "percent",
-    desc: "Cloud Cover"
-  },
-  dewPoint: {
-    optional: true,
-    unit: "fahrenheit",
-    desc: "Dew Point"
-  },
-  humidity: {
-    optional: true,
-    unit: "percent",
-    desc: "Humidity"
-  },
-  moonPhase: {
-    optional: true,
-    unit: "lunation",
-    omittedByDataBlks: [ "minutely", "hourly" ],
-    desc: "Moon Phase"
-  },
-  precipProbability: {
-    optional: true,
-    unit: "percent",
-    desc: "Chance of Precipication"
-  },
-  pressure: {
-    optional: true,
-    unit: "millibars",
-    desc: "Atmospheric Pressure"
-  },
-  summary: {
-    optional: true,
-    unit: "<as is>",
-    desc: "",
-    omittedByDataBlks: ["minutely", "hourly", "daily"]
-  },
-  sunriseTime: {
-    optional: true,
-    unit: "unix time",
-    omittedByDataBlks: [ "minutely", "hourly" ],
-    desc: "Sunrise"
-  },
-  sunsetTime: {
-    optional: true,
-    unit: "unix time",
-    omittedByDataBlks: [ "minutely", "hourly" ],
-    desc: "Sunset"
-  },
-  temperature: {
-    optional: true,
-    unit: "fahrenheit",
-    omittedByDataBlks: [ "minutely" ],
-    desc: "Temperature"
-  },
-  temperatureHigh: {
-    optional: true,
-    unit: "fahrenheit",
-    omittedByDataBlks: [ "minutely", "hourly" ],
-    desc: "High"
-  },
-  temperatureLow: {
-    optional: true,
-    unit: "fahrenheit",
-    omittedByDataBlks: [ "minutely", "hourly" ],
-    desc: "Low"
-  },
-  windGust: {
-    optional: true,
-    unit: "mph",
-    desc: "Wind Gust"
-  },
-  windSpeed: {
-    optional: true,
-    unit: "mph",
-    desc: "Wind Speed"
-  },
-  visibility: {
-    optional: true,
-    unit: "miles",
-    desc: "Visibility"
-  }
-}
+darkSkyData.ca = deepClone(darkSkyData.si);
+(() => {
+  const ca = darkSkyData.ca
+  Object.assign(ca.windSpeed, {unit: "kph"}) // km per second
+  Object.assign(ca.windGust, {unit: "kph"})
+})()
 
-export const unitConversions = {
-  percent: (val) => `${toInt(val * 100)}%`,
-  fahrenheit: (val) => `${toInt(val)}°F`,
-  lunation: (val) => {
-    // 1. map moon phases to values
-    let phases = [
-      "New Moon", "Waxing Crescent", "1st Quarter", "Waxing Gibbous",
-      "Full Moon", "Waning Gibbious", "3rd Quarter", "Waning Crescent"
-    ]
-    let part = 1 / phases.length,
-        currPart = 0 - part
-    phases = phases.map((phaseName) => {
-      currPart += part
-      return [currPart, phaseName]
-    })
+darkSkyData.uk2 = deepClone(darkSkyData.si);
+(() => {
+  const uk2 = darkSkyData.uk2
+  Object.assign(uk2.visibility, {unit: "mi"})
+  Object.assign(uk2.windSpeed, {unit: "mph"}) // miles per hour
+  Object.assign(uk2.windGust, {unit: "mph"})
+})()
 
-    // 2. determine current moon phase by looking for index closest to val
-    let indOfClosest
-    phases.reduce((prev, curr, ind) => {
-      let [phaseVal, phaseName] = curr
-      if (Math.abs(val - phaseVal) < prev) {
-        indOfClosest = ind
-        return val - phaseVal
-      } else return prev
-    }, Infinity)
-
-    return phases[indOfClosest][1]
-  },
-  millibars: (val) => `${toInt(val)} Mbar`,
-  "<as is>": (val) => `${val}`,
-  "unix time": (val,timezone) => `${moment.tz(unixTime(val), timezone).format('h:mma z')}`,// FIXME
-  mph: (val) => `${toInt(val)} mph`,
-  miles: (val) => `${toInt(val)} miles`
-}
 
 const DataBlockCard = (props) => {
     // 1. format time
@@ -154,6 +64,7 @@ const DataBlockCard = (props) => {
     formattedTime = moment(unixTime(props.time)).format(format)
 
     // 2. validate data point props build card items
+    const dataPtKeyInfo = darkSkyData[props.unit]
     const dataPtKeysUsed = Object.keys(dataPtKeyInfo).filter((key) => {
       if (!(key in props)) {
         if (!dataPtKeyInfo[key].optional)
@@ -175,7 +86,7 @@ const DataBlockCard = (props) => {
         return (
           <div key={ind} className="d-flex px-3 py-1" style={{justifyContent: "space-between"}}>
             <div className="text-secondary">{ dataPtKeyInfo[key].desc }</div>
-            <div>{ unitConversions[dataPtKeyInfo[key].unit](props[key], "unix time" === dataPtKeyInfo[key].unit ? props.timezone : void(0)) }</div>
+            <div>{ dataHumanizers[dataPtKeyInfo[key].unit](props[key], "unix time" === dataPtKeyInfo[key].unit ? props.timezone : void(0)) }</div>
           </div>
         )
       }
@@ -215,6 +126,13 @@ const DataBlockCard = (props) => {
         </CardBlock>
       </Card>
     )
+}
+
+DataBlockCard.propTypes = {
+  unit: PropTypes.string.isRequired,
+  dataBlockName: PropTypes.string.isRequired,
+  timezone: PropTypes.string.isRequired,
+  /* ...dataPt */
 }
 
 export default DataBlockCard

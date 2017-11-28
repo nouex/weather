@@ -15,97 +15,142 @@ describe('loadJsonApi()', function () {
     expect(loadJsonApi()).toEqual(jasmine.any(Function))
   })
 
-  it("ret fn dispatches setJsonApiStatus(1) on loc. req. err", function (done) {
-    geolocation.use()
-    loadJsonApi()(function (action) {
-      expect(action).toEqual(actions.setJsonApiStatus(1))
-      done()
+  describe('thunk', function () {
+    const getStateWithEmptyRequestParams = () => ({requestParams: {}})
+
+    it("dispatches setJsonApiStatus(1) on loc. req. err", function (done) {
+      geolocation.use()
+      loadJsonApi()(function (action) {
+        expect(action).toEqual(actions.setJsonApiStatus(1))
+        done()
+      }, getStateWithEmptyRequestParams)
+      geolocation.sendError({code: 1, message: "sum error"})
     })
-    geolocation.sendError({code: 1, message: "sum error"})
-  })
 
-  it("ret fn dispatches setJsonApiStatus(0, data) on success", function (done) {
-    function specDone() {
-      xhrMock.teardown()
-      done()
-    }
+    it("dispatches setJsonApiStatus(0, data) on success", function (done) {
+      function specDone() {
+        xhrMock.teardown()
+        done()
+      }
 
-    const location = {
-      latitude: "42.3601",
-      longitude: "-71.0589"
-    }
+      const location = {
+        latitude: "42.3601",
+        longitude: "-71.0589"
+      }
 
-    const resBody = { Fredo: "Krueger" }
+      const resBody = { Fredo: "Krueger" }
 
-    xhrMock.setup()
-    xhrMock.get(`/weather/${location.latitude}/${location.longitude}`, function(req, res) {
-        return res
-          .status(200)
-          .body(resBody);
-      });
+      xhrMock.setup()
+      xhrMock.get(`/weather/${location.latitude}/${location.longitude}`, function(req, res) {
+          return res
+            .status(200)
+            .body(resBody);
+        });
 
-    geolocation.use()
-    loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
-      expect(action).toEqual(actions.setJsonApiStatus(0, resBody))
-      specDone()
+      geolocation.use()
+      loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
+        expect(action).toEqual(actions.setJsonApiStatus(0, resBody))
+        specDone()
+      }, getStateWithEmptyRequestParams)
+      geolocation.send(location)
     })
-    geolocation.send(location)
-  })
 
-  it("ret fn dispatches setJsonApiStatus(1) on bad statusCode", function (done) {
-    function specDone() {
-      xhrMock.teardown()
-      done()
-    }
+    it("dispatches setJsonApiStatus(1) on bad statusCode", function (done) {
+      function specDone() {
+        xhrMock.teardown()
+        done()
+      }
 
-    const location = {
-      latitude: "42.3601",
-      longitude: "-71.0589"
-    }
+      const location = {
+        latitude: "42.3601",
+        longitude: "-71.0589"
+      }
 
-    const resBody = { Glory: "Boys" }
+      const resBody = { Glory: "Boys" }
 
-    xhrMock.setup()
-    xhrMock.get(`/weather/${location.latitude}/${location.longitude}`, function(req, res) {
-        return res
-          .status(404)
-          .body(resBody);
-      });
+      xhrMock.setup()
+      xhrMock.get(`/weather/${location.latitude}/${location.longitude}`, function(req, res) {
+          return res
+            .status(404)
+            .body(resBody);
+        });
 
-    geolocation.use()
-    loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
-      expect(action).toEqual(actions.setJsonApiStatus(1))
-      specDone()
+      geolocation.use()
+      loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
+        expect(action).toEqual(actions.setJsonApiStatus(1))
+        specDone()
+      }, getStateWithEmptyRequestParams)
+      geolocation.send(location)
     })
-    geolocation.send(location)
-  })
+    xit("dispatches setJsonApiStatus(1) on xhr cb(err)", function (done) {
+      function specDone() {
+        xhrMock.teardown()
+        done()
+      }
 
-  xit("ret fn dispatches setJsonApiStatus(1) on xhr cb(err)", function (done) {
-    function specDone() {
-      xhrMock.teardown()
-      done()
-    }
+      const location = {
+        latitude: "42.3601",
+        longitude: "-71.0589"
+      }
 
-    const location = {
-      latitude: "42.3601",
-      longitude: "-71.0589"
-    }
+      const resBody = { Glory: "Boys" }
 
-    const resBody = { Glory: "Boys" }
+      xhrMock.setup()
+      xhrMock.get(`/weather/${location.latitude}/${location.longitude}`, function(req, res) {
+          // https://github.com/jameslnewell/xhr-mock#simulate-an-error
+          return new Promise.reject()
+        });
 
-    xhrMock.setup()
-    xhrMock.get(`/weather/${location.latitude}/${location.longitude}`, function(req, res) {
-        // https://github.com/jameslnewell/xhr-mock#simulate-an-error
-        return new Promise.reject()
-      });
-
-    geolocation.use()
-    loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
-      expect(action).toEqual(actions.setJsonApiStatus(1))
-      specDone()
+      geolocation.use()
+      loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
+        expect(action).toEqual(actions.setJsonApiStatus(1))
+        specDone()
+      })
+      geolocation.send(location)
     })
-    geolocation.send(location)
-  })
+
+    it('request params', function (done) {
+      function specDone() {
+        xhrMock.teardown()
+        done()
+      }
+
+      const location = {
+        latitude: "42.3601",
+        longitude: "-71.0589"
+      }
+
+      const resBody = { Alexa: "Fulcher" }
+
+      xhrMock.setup()
+      // FIXME: marking this as flaky test.  requestParams is an object and we
+      // cannot predict (or can we?) the order in which query-string traverses
+      // and concatenates them.  We could make it more stable by importing
+      // query-string and building the query params up.  Or maybe xhr-mock has
+      // an option whereby any url matching it **so far** will match and it will
+      // provide you with the rest of the url that hasn't matched so that we may
+      // manually check for the params
+      xhrMock.get(`/weather/${location.latitude}/${location.longitude}?amazon=alexa&foo=bar`, function(req, res) {
+          return res
+            .status(200)
+            .body(resBody);
+        });
+
+      geolocation.use()
+      loadJsonApi(new xhrMock.XMLHttpRequest())(function (action) {
+        expect(action).toEqual(actions.setJsonApiStatus(0, resBody))
+        specDone()
+      }, () => {
+        return {
+          requestParams: {
+            foo: "bar",
+            amazon: "alexa"
+          }
+        }
+      })
+      geolocation.send(location)
+    });
+  });
 });
 
 describe('upLocalTime()', function () {

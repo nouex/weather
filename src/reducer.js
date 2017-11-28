@@ -5,7 +5,15 @@ const initState = {
   dataBlockName: "hourly",
   page: 1,
   pageInterval: 5,
-  localTime: null // NOTE: UNIX time (secs not ms)
+  localTime: null, // NOTE: UNIX time (secs not ms)
+  requestParams: { // dark sky defaults
+    lang: "en",
+    units: "auto"
+  }
+}
+
+const boolRequestParameters = {
+  extend: "hourly"
 }
 
 function mainReducer(state = initState, action) {
@@ -32,6 +40,25 @@ function mainReducer(state = initState, action) {
         : +(new Date) / 1000 // -> to UNIX time
 
       return Object.assign({}, state, { localTime })
+
+    case "SET_REQUEST_PARAM":
+      let {val, name} = action,
+          ret = Object.assign({}, state)
+
+      if (typeof val === "boolean") {
+        if (!(name in boolRequestParameters)) {
+          throw new Error(`${name} not found in boolRequestParameters`)
+        }
+        if (val === true) {
+          ret.requestParams[name] = boolRequestParameters[name]
+        } else {
+          delete ret.requestParams[name]
+        }
+        return ret
+      } else {
+        ret.requestParams[name] = val
+        return ret
+      }
 
     default:
       return state;

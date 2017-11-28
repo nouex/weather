@@ -1,5 +1,3 @@
-// TODO: there has to be a leaner way to use named exports for unitConversions
-import * as dataBlockCardExport from "./DataBlockCard"
 import React from "react"
 import { shallow  } from 'enzyme';
 import DataBlockCard from "./DataBlockCard"
@@ -8,7 +6,8 @@ import {
   CardBlock,
   CardHeader,
 } from 'react-bootstrap-card';
-const {unitConversions} = dataBlockCardExport
+import util from "../util"
+const { dataHumanizers } = util
 
 describe('<DataBlockCard />', function () {
   it("renders a card structure", function () {
@@ -22,7 +21,8 @@ describe('<DataBlockCard />', function () {
       humidity: 0.74,
       dewPoint: 26.15,
       timezone: "America/Los_Angeles",
-      time: 1505408667517 / 1000 // UNIX time in secs no ms
+      time: 1505408667517 / 1000, // UNIX time in secs no ms
+      unit: "us"
     }
 
     const wrapper = shallow(<DataBlockCard {...props}/>)
@@ -37,9 +37,9 @@ describe('<DataBlockCard />', function () {
   })
 });
 
-describe('unitConversions', function () {
+describe('dataHumanizers', function () {
   describe('lunation', function () {
-    const {lunation} = unitConversions
+    const {lunation} = dataHumanizers
     it('val maps to correct moon phase', function () {
       // multiples of 1/8
       expect(lunation(0)).toBe("New Moon")

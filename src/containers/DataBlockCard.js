@@ -11,7 +11,8 @@ function mapStateToProps(state, { dataPtKey }) {
     dataPt,
     {
       dataBlockName: state.dataBlockName,
-      timezone: state.data.timezone
+      timezone: state.data.timezone,
+      unit: state.data.flags.units
     }
   )
 }

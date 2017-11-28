@@ -1,5 +1,6 @@
 import util from "./util"
 import xhr from "xhr"
+import queryString from "query-string"
 const geo = util.geo
 
 function setJsonApiStatus(statusN, dataJson, msg) {
@@ -36,17 +37,21 @@ function setJsonApiStatus(statusN, dataJson, msg) {
 }
 
 // TODO: log the err msg or save it in store, setJsonApiStatus(1, null,  e.msg)
-function loadJsonApi(_xhr) {
-  return function (dispatch) {
+function loadJsonApi(_xhr, cb = () => {}) {
+  return function (dispatch, getState) {
+    // TODO: make sure requestParams's keys and values are uri encoded
+    let params = queryString.stringify(getState().requestParams)
+    params.length > 0 ? params = "?" + params : void(0)
     geo.getLocation(function (locArr) {
       xhr({
           method: "GET",
-          uri: `/weather/${locArr[0]}/${locArr[1]}`,
+          uri: `/weather/${locArr[0]}/${locArr[1]}${params}`,
           json: true,
           xhr: _xhr
       }, function (err, resp, body) {
+          cb()
           if (err) dispatch(setJsonApiStatus(1, null, err.message))
-          if (+resp.statusCode !== 200)
+          else if (+resp.statusCode !== 200)
             dispatch(setJsonApiStatus(1, null, "non 200 OK status code"))
           else dispatch(setJsonApiStatus(0, body))
       })
@@ -69,12 +74,21 @@ function upLocalTime() {
   }
 }
 
+function setRequestParam(name, val) {
+  return {
+    type: "SET_REQUEST_PARAM",
+    name,
+    val
+  }
+}
+
 const actions = {
   setDataBlockName,
   loadJsonApi,
   setJsonApiStatus,
   upPage,
-  upLocalTime
+  upLocalTime,
+  setRequestParam
 }
 
 export default actions

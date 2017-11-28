@@ -8,7 +8,7 @@ describe('<PageRequest />', function () {
       upPage: jasmine.createSpy("upPage")
     }
 
-    const wrapper = shallow(<PageRequest { ...props }/>).simulate("click")
+    const wrapper = shallow(<PageRequest { ...props }/>).childAt(0).simulate("click")
 
     expect(props.upPage.calls.count()).toEqual(1)
   })

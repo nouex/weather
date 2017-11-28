@@ -15,7 +15,8 @@ function mapStateToProps(state) {
     timezone: data.timezone,
     temperature: data.currently.temperature,
     summary: data.currently.summary,
-    localTime: state.localTime
+    localTime: state.localTime,
+    unit: state.data.flags.units
   }
 }
 
