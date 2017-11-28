@@ -19,7 +19,8 @@ class DataBlockSelector extends React.Component {
     return (
       // TODO: p-3 on this one and p-3 on <DataBlock />??? How about wrap them
       //  all in a wrapper tha has p-3
-      <select value={ this.state.value } onChange={this.onChange}>
+      <select value={ this.state.value } onChange={this.onChange}
+              className="mb-5">
         <option value="minutely">Minutely</option>
         <option value="hourly">Hourly</option>
         <option value="daily">Daily</option>
