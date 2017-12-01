@@ -3,6 +3,7 @@ import _Header from "../containers/Header"
 import Controls from "./Controls"
 import _DataBlock from "../containers/DataBlock"
 import _PageRequest from "../containers/PageRequest"
+import Footer from "./Footer"
 import PropTypes from "prop-types"
 
 const DataPage = ({ page, pageInterval, dataLen }) => (
@@ -13,6 +14,7 @@ const DataPage = ({ page, pageInterval, dataLen }) => (
     { page * pageInterval >= dataLen ?
         null :
         <_PageRequest /> }
+    <Footer />
   </div>
 )
 

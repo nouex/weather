@@ -5,6 +5,7 @@ import _Header from "../containers/Header"
 import _DataBlock from "../containers/DataBlock"
 import _PageRequest from "../containers/PageRequest"
 import Controls from "./Controls"
+import Footer from "./Footer"
 
 describe('<DataPage />', function () {
   it('in general, renders correctly', function () {
@@ -20,6 +21,7 @@ describe('<DataPage />', function () {
         <Controls />
         <_DataBlock />
         <_PageRequest />
+        <Footer />
       </div>
     )
   });
@@ -38,6 +40,7 @@ describe('<DataPage />', function () {
           <Controls />
           <_DataBlock />
           <_PageRequest />
+          <Footer />
         </div>
       )
     });
@@ -55,6 +58,7 @@ describe('<DataPage />', function () {
           <Controls />
           <_DataBlock />
           { null }
+          <Footer />
         </div>
       )
     })
